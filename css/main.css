@@ -1,0 +1,156 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+html, body, #map {
+    height: 100%;
+    font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+.lorem {
+    font-style: italic;
+    color: #AAA;
+}
+
+.chat-message-input
+{
+    width: 100%; 
+    height:35px;
+    margin-top:5px;
+    border:1px solid #999;
+}
+
+.chatinput {
+    width:100%;
+    height: 65px;
+}
+
+#chatTimeStamp {
+    width:65px;
+}
+
+#chatSendBtn {
+    width:90px;
+    width: 25%;
+}
+
+td.chatinputtable {
+    width: 100%;
+    padding-left: 0.3cm;
+}
+
+.chat
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.left .chat-body
+{
+
+}
+
+.chat li.right .chat-body
+{
+    margin-right: 60px;
+}
+
+
+.chat li .chat-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+    overflow-y: scroll;
+    height: 250px;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+
+.chatmsgtxt
+{
+    padding-top: 1px;
+    word-wrap: break-word;
+}
+
+.logout 
+{
+    background-color: #ff6666;
+}
+
+.unitMkr
+{
+    color: blue;
+}
+
+.searchBox 
+{
+    width: 100%;
+}
+
+.agency-logo {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    z-index: 100000;
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    opacity: 0.5;
+}
+
+@media (max-width:767px){
+    .agency-logo {
+        display:none;
+    }
+}
+
+.pac-container {
+    z-index: 100000;
+}
+
+.buttons-float-right 
+{
+    float: right;
+}
+
+.delete 
+{
+    color: red;
+}

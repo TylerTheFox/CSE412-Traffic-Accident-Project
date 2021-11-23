@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="mainCtrl" ng-init="init(false);">
+    <head>
+        <title>CSE412 - Traffic Accidents</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no">
+    </head>
+    <body>
+        <img class="agency-logo" src="./images/agency.png" alt="AGENCY 9-1-1" style="width:132px;height:132px;">
+        <div id="sidebar" class="sidebar collapsed">
+            <!-- Nav tabs -->
+            <div class="sidebar-tabs">
+                <ul role="tablist">
+                    <li><a ng-click="AppData.Page = 'homeCtrl'" href="#home" role="tab" title="Info"><i class="fa fa-bars"></i></a></li>
+                </ul>
+            </div>
+
+            <!-- Tab panes -->
+            <div class="sidebar-content">
+                <div class="sidebar-pane" id="home">
+                    <h1 class="sidebar-header">
+                        CSE412 - Traffic Accidents
+                        <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                    </h1>
+                    <br>
+                    <h3> Welcome!</h3>
+                </div>
+	     </div>
+	</div>	
+		<div id="map" class="sidebar-map"></div>
+
+        <link rel="stylesheet" href="./css.php">
+        <script src="./js.php"></script>
+        <script src="https://maps.google.com/maps/api/js?key=AIzaSyBjT-szWXwWiR87H_PFHJZ431QEsIkZqCs&libraries=places" type="text/javascript" async></script>
+    </body>
+</html>
