@@ -1,0 +1,7 @@
+<?PHP
+$hostname       = "localhost";
+$username       = "username";
+$password       = "password";
+$port           = 5432;
+$database       = "database";
+?>
