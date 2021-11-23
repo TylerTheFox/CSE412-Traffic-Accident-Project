@@ -3,7 +3,7 @@ app.controller('mainCtrl', function ($scope, $http)
 {
     $scope.initMap = function ()
     {
-        $scope.map = L.map('map').setView([44.980039, -122.781830], 10);
+        $scope.map = L.map('map').setView([45.39172297076271, -122.8101657981665], 11);
         $scope.sidebar = L.control.sidebar('sidebar').addTo($scope.map);
         $scope.sidebar.open("home");
 
