@@ -13,7 +13,11 @@
                 <ul role="tablist">
                     <li><a ng-click="AppData.Page = 'homeCtrl'" href="#home" role="tab" title="Info"><i class="fa fa-bars"></i></a></li>
                 </ul>
-            </div>
+        
+                <ul role="tablist">
+                    <li><a ng-click="AppData.Page = 'settingsCtrl'" href="#settings" role="tab" title="Settings"><i class="fa fa-gear"></i></a></li>
+                </ul>
+	    </div>
 
             <!-- Tab panes -->
             <div class="sidebar-content">
@@ -24,10 +28,20 @@
                     </h1>
                     <br>
                     <h3> Welcome!</h3>
+
+		    <p> Todo: </p>
+		    <p> * List of incidents on the map (might be too many) </p>
+		    <p> * Date filters </p> 
+		    <p> * Location control? Adjustable radius? </p>
                 </div>
 	     </div>
 	</div>	
-		<div id="map" class="sidebar-map"></div>
+
+        <div class="sidebar-pane" id="settings">
+		<h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+	</div>
+	
+	<div id="map" class="sidebar-map"></div>
 
         <link rel="stylesheet" href="./css.php">
         <script src="./js.php"></script>
