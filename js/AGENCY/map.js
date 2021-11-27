@@ -54,8 +54,9 @@ app.controller('mainCtrl', function ($scope, $http)
         }
 	else
 	{
+		$scope.CircleFilter.editing.disable();
 		$scope.CircleFilter.setLatLng(latlng);
-
+		$scope.CircleFilter.editing.enable();
 	}
     }
 
