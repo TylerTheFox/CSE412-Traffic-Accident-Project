@@ -29,7 +29,7 @@
                     <br>
                     <h3> Welcome!</h3>
 		    <br/>
-		    <p> Range: </p>
+		    <h3> Filter Control Test: </h3>
                     <button ng-click="AddRadiusMarker()">
                     	Add Center Marker
 		    </button>
@@ -39,6 +39,17 @@
 		    <br/>
 		    <br/>
 		    <br/>
+		    <h3> Test Settings </h3>
+		    <p> Radius: <input ng-model="cfg.radius" type="number" id="range" name="range" min="0" max="100"></p>
+                    <p> maxOpacity: <input ng-model="cfg.maxOpacity" type="number" id="CfgOpacity" name="CfgOpacity" min="0" max="100"></p>
+                    <p> scaleRadius: <input ng-model="cfg.scaleRadius" type="checkbox" id="CfgScaleRadius" name="CfgScaleRadius"></p>
+                    <p> useLocalExtrema: <input ng-model="cfg.useLocalExtrema" type="checkbox" id="CfgExtreme" name="CfgExtreme"></p>
+		    <button ng-click="ApplyCfg()">Apply</button>
+
+
+                    <br/>
+                    <br/>
+                    <br/>
 		    <p> Todo: </p>
 		    <p> * List of incidents on the map (might be too many) </p>
 		    <p> * Date filters </p> 

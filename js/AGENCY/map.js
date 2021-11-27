@@ -16,7 +16,7 @@ app.controller('mainCtrl', function ($scope, $http)
 	$scope.cfg = {
 	  // radius should be small ONLY if scaleRadius is true (or small radius is intended)
 	  // if scaleRadius is false it will be the constant radius used in pixels
-	  "radius": 0.008,
+	  "radius": 0.004,
 	  "maxOpacity": .8,
 	  // scales the radius based on map zoom
 	  "scaleRadius": true,
@@ -31,9 +31,6 @@ app.controller('mainCtrl', function ($scope, $http)
 	  // which field name in your data represents the data value - default "value"
 	  valueField: 'count'
 	};
-
-	$scope.heatmapLayer = new HeatmapOverlay($scope.cfg);
-	$scope.map.addLayer($scope.heatmapLayer);
     };
 
     $scope.HeatUpTheMap = function()
@@ -73,7 +70,23 @@ app.controller('mainCtrl', function ($scope, $http)
 	{
 		console.log("Error no marker defined");
 	}
-     }
+    }
+
+    $scope.InitHeatMap = function()
+    {
+        if ($scope.heatmapLayer !== undefined)
+        {
+                $scope.map.removeLayer($scope.heatmapLayer);
+        }
+        $scope.heatmapLayer = new HeatmapOverlay($scope.cfg);
+        $scope.map.addLayer($scope.heatmapLayer);
+        $scope.HeatUpTheMap();
+    }
+
+    $scope.ApplyCfg = function()
+    {
+	$scope.InitHeatMap();
+    }
 
     $scope.init = function (standalone)
     {
@@ -83,7 +96,7 @@ app.controller('mainCtrl', function ($scope, $http)
         $http.get("./api/Get/Incidents/Gps/", {timeout: 5000}).then(function (response)
         {
 		$scope.GPSData = response.data;
-		$scope.HeatUpTheMap();
+		$scope.InitHeatMap();
 	});
 	$scope.distance = 0;
     };
