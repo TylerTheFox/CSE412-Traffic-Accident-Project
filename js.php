@@ -5,9 +5,10 @@ $files = array
     './js/angular.min.js',
     './js/heatmap.js',
     './js/leaflet.js',
-    './js/leaflet-heatmap.js',
     './js/sidebar/leaflet-sidebar.js',
+    './js/leaflet.draw.js',
     './js/L.Popup.Angular.js',
+    './js/leaflet-heatmap.js',
     './js/AGENCY/app.js',
     './js/AGENCY/map.js'
 );

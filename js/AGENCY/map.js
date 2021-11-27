@@ -4,7 +4,8 @@ app.controller('mainCtrl', function ($scope, $http)
     $scope.initMap = function ()
     {
         $scope.map = L.map('map').setView([45.39172297076271, -122.8101657981665], 11);
-        $scope.sidebar = L.control.sidebar('sidebar').addTo($scope.map);
+
+	$scope.sidebar = L.control.sidebar('sidebar').addTo($scope.map);
         $scope.sidebar.open("home");
 
         $scope.OR911_MAP = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -45,14 +46,16 @@ app.controller('mainCtrl', function ($scope, $http)
     $scope.AddRadiusMarker = function()
     {
 	var latlng = $scope.map.getCenter();
-	if ($scope.MarkerFilter === undefined)
+	if ($scope.CircleFilter === undefined)
 	{
-        	$scope.MarkerFilter = new L.marker(latlng, {draggable:'true'});
-        	$scope.map.addLayer($scope.MarkerFilter);
+		$scope.CircleFilter = L.circle(latlng, {radius: 10000});
+		$scope.CircleFilter.editing.enable();
+		$scope.CircleFilter.addTo($scope.map);
         }
 	else
 	{
-		$scope.MarkerFilter.setLatLng(latlng);
+		$scope.CircleFilter.setLatLng(latlng);
+
 	}
     }
 

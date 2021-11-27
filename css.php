@@ -4,6 +4,7 @@ $files = array
     './css/jquery-ui.css',
     './css/bootstrap.min.css',
     './css/leaflet.css',
+    './css/leaflet.draw.css',
     './css/leaflet-sidebar.css',
     './css/font-awesome.min.css',
     './css/main.css'
