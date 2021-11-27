@@ -28,7 +28,17 @@
                     </h1>
                     <br>
                     <h3> Welcome!</h3>
-
+		    <br/>
+		    <p> Range: </p>
+                    <button ng-click="AddRadiusMarker()">
+                    	Add Center Marker
+		    </button>
+		    <input ng-model="distance" type="number" id="range" name="range" min="10" max="100">
+                    <span> mi </span>
+		    <button ng-click="ApplyRangeFilter()">Apply</button>
+		    <br/>
+		    <br/>
+		    <br/>
 		    <p> Todo: </p>
 		    <p> * List of incidents on the map (might be too many) </p>
 		    <p> * Date filters </p> 

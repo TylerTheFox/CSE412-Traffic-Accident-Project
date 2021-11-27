@@ -1,8 +1,7 @@
 <?php
 $files = array
     (
-    './js/jquery-3.2.1.min.js',
-    './js/spectrum.js',
+    './js/jquery-3.6.0.min.js',
     './js/angular.min.js',
     './js/heatmap.js',
     './js/leaflet.js',

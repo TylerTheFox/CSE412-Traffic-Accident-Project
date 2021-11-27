@@ -42,14 +42,38 @@ app.controller('mainCtrl', function ($scope, $http)
   		data: $scope.GPSData
 	};
 
-	//var heatMapData = {
-  	//	data: [{lat: 24.6408, lng:46.7728, count: 3},{lat: 50.75, lng:-1.55, count: 1}]
-	//};
-
-	console.log(heatMapData);
-
 	$scope.heatmapLayer.setData(heatMapData);
     }
+
+    $scope.AddRadiusMarker = function()
+    {
+	var latlng = $scope.map.getCenter();
+	if ($scope.MarkerFilter === undefined)
+	{
+        	$scope.MarkerFilter = new L.marker(latlng, {draggable:'true'});
+        	$scope.map.addLayer($scope.MarkerFilter);
+        }
+	else
+	{
+		$scope.MarkerFilter.setLatLng(latlng);
+	}
+    }
+
+    $scope.ApplyRangeFilter = function()
+    {
+	if ($scope.MarkerFilter !== undefined)
+	{
+		var currentMarkerLatLng = $scope.MarkerFilter.getLatLng();
+		var currentRadiusInMiles = $scope.distance;
+
+		console.log(currentMarkerLatLng);
+		console.log(currentRadiusInMiles);
+    	}
+	else
+	{
+		console.log("Error no marker defined");
+	}
+     }
 
     $scope.init = function (standalone)
     {
@@ -61,5 +85,7 @@ app.controller('mainCtrl', function ($scope, $http)
 		$scope.GPSData = response.data;
 		$scope.HeatUpTheMap();
 	});
+	$scope.distance = 0;
     };
 });
+

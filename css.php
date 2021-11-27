@@ -1,6 +1,7 @@
 <?php
 $files = array
     (
+    './css/jquery-ui.css',
     './css/bootstrap.min.css',
     './css/leaflet.css',
     './css/leaflet-sidebar.css',
