@@ -49,31 +49,14 @@ app.controller('mainCtrl', function ($scope, $http)
 	if ($scope.CircleFilter === undefined)
 	{
 		$scope.CircleFilter = L.circle(latlng, {radius: 10000});
-		//$scope.CircleText = L.tooltip({permanent:true,direction:'bottom',opacity:0.9,className:'text'});
 		var radius = Math.floor($scope.CircleFilter.getRadius()*0.000621371);
 		var radiusText = `${radius} miles`;
-		//var bounds = $scope.CircleFilter.getBounds().getCenter();
-		//var lat = $scope.CircleFilter.getLatLng().lat-10;
-		//var lon = $scope.CircleFilter.getLatLng().lng-10;
 		var point = L.point([0,8]);
 		$scope.CircleText = L.tooltip({permanent:true,direction:'bottom',offset:point,opacity:0.9,className:'text'});
 		$scope.CircleText.setContent(radiusText);
 		$scope.CircleFilter.bindTooltip($scope.CircleText);
 		$scope.CircleFilter.editing.enable();
 		$scope.CircleFilter.addTo($scope.map);
-
-		/*
-		$scope.map.on('draw:editmove', function(event) {
-		    	var layer = event.layer;
-			layer.setStyle({color: 'DarkRed'});
-			
-			//var radius = layer.getRadius();
-			//$scope.CircleText.setContent(radius);
-			//layer.bindTooltip($scope.CircleText);
-		 	console.log(layer.getRadius());
-			//$scope.CircleText.setContent(layer.getRadius());
-		});
-		*/
 		$scope.map.on('draw:editresize', function(event) {
 			var layer = event.layer;
 			var radius = Math.floor(layer.getRadius()*0.000621371);
@@ -81,22 +64,12 @@ app.controller('mainCtrl', function ($scope, $http)
 			$scope.CircleText.setContent(radiusText);
 			layer.bindTooltip($scope.CircleText);
 		});
-		/*
-		$scope.map.on('editable:dragend', function(event) {
-			var layer = event.layer;
-			console.log(layer.getRadius());
-			//$scope.CircleText.setContent(layer.getRadius());
-		});*/
         }
 	else
 	{
-
-		//var radius = $scope.CircleFilter.getRadius();
-                //var radiusText = `Radius = ${radius}`;
 		$scope.CircleFilter.editing.disable();
 		$scope.CircleFilter.setLatLng(latlng);
 		$scope.CircleFilter.editing.enable();
-		//$scope.CircleText.setContent(radiusText);
 	}
     }
 
