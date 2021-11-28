@@ -1,5 +1,5 @@
 // Angular JS stuff
-var app = angular.module('myApp', []);
+var app = angular.module('myApp', ['ngMaterial', 'ngMessages']);
 app.factory('AppData', function () {
     return {AppData: []};
 });

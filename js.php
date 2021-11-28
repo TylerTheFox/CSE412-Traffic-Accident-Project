@@ -3,6 +3,10 @@ $files = array
     (
     './js/jquery-3.6.0.min.js',
     './js/angular.min.js',
+    './js/angular-animate.min.js',
+    './js/angular-aria.min.js',
+    './js/angular-messages.min.js',
+    './js/angular-material.min.js',
     './js/heatmap.js',
     './js/leaflet.js',
     './js/sidebar/leaflet-sidebar.js',

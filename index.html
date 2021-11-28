@@ -28,6 +28,14 @@
                     </h1>
                     <br>
                     <h3> Welcome!</h3>
+
+      	            <h4 id="datepicker-header">Date Range</h4>
+		    <span>
+			<md-datepicker ng-model="DateFrom" md-placeholder="Enter date" input-aria-describedby="datepicker-description" input-aria-labelledby="datepicker-header "></md-datepicker>
+                        -
+			<md-datepicker ng-model="DateTo" md-placeholder="Enter date" input-aria-describedby="datepicker-description" input-aria-labelledby="datepicker-header "></md-datepick>
+		    </span>
+
 		    <br/>
 		    <h3> Filter Control Test: </h3>
                     <button ng-click="AddRadiusMarker()">

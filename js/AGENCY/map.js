@@ -125,6 +125,9 @@ app.controller('mainCtrl', function ($scope, $http)
 		$scope.InitHeatMap();
 	});
 	$scope.distance = 0;
+
+	$scope.DateFrom = new Date();
+        $scope.DateTo = new Date();
     };
 });
 
