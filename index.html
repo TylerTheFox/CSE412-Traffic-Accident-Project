@@ -44,12 +44,14 @@
 				<h5>By Date:</h5>
 
 				<p>
-					<md-datepicker ng-model="DateFrom" md-placeholder="Enter date" md-hide-icons="calendar" md-min-date="MinDate" md-max-date="MaxDate"
-						input-aria-describedby="datepicker-description" input-aria-labelledby="datepicker-header ">
+					<md-datepicker ng-model="DateFrom" md-placeholder="Enter date" md-hide-icons="calendar"
+						md-min-date="MinDate" md-max-date="MaxDate" input-aria-describedby="datepicker-description"
+						input-aria-labelledby="datepicker-header ">
 					</md-datepicker>
 					-
-					<md-datepicker ng-model="DateTo" md-placeholder="Enter date" md-hide-icons="calendar" md-min-date="MinDate" md-max-date="MaxDate"
-						input-aria-describedby="datepicker-description" input-aria-labelledby="datepicker-header ">
+					<md-datepicker ng-model="DateTo" md-placeholder="Enter date" md-hide-icons="calendar"
+						md-min-date="MinDate" md-max-date="MaxDate" input-aria-describedby="datepicker-description"
+						input-aria-labelledby="datepicker-header ">
 					</md-datepicker>
 					<button ng-click="ApplyDateFilter()">Apply</button>
 					<button ng-click="ResetDateFilter()">Reset</button>
@@ -80,16 +82,41 @@
 							<tr>
 								<th></th>
 								<th ng-repeat="hdr in TableHeaders">{{ hdr}}</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
+
 							<tr
-								ng-repeat="x in (MainDataTable = CurrentData) | startFrom:currentPage * pageSize | limitTo:pageSize">
-								<td><span ng-click="GetCallData(x.incidentid)" class="fa fa-caret-right"></span</td>
-								<td>{{ x.received}}</td>
-								<td>{{ x.callnum}}</td>
-								<td>{{ x.address}}</td>
+								ng-repeat-start="x in (MainDataTable = CurrentData) | startFrom:currentPage * pageSize | limitTo:pageSize">
+								<td>
+									<span ng-show="x.incidentid !== CurrentlySelectedCall"
+										ng-click="GetCallData(x.incidentid)" class="fa fa-caret-right"></span>
+									<span ng-show="x.incidentid === CurrentlySelectedCall"
+										ng-click="GetCallData(x.incidentid)" class="fa fa-caret-down"></span>
+								</td>
+								<td>{{ x.received }}</td>
+								<td>{{ x.callnum }}</td>
+								<td>{{ x.address }}</td>
+
 							</tr>
+
+							<tr ng-if="x.incidentid === CurrentlySelectedCall">
+								<td>Unit</td>
+								<td>Dispatched</td>
+								<td>En-route</td>
+								<td>On Scene</td>
+								<td>Clear</td>
+							</tr>
+
+							<tr ng-if="x.incidentid === CurrentlySelectedCall" ng-repeat-end ng-repeat="unit in RawUnitData">
+								<td>{{ unit.name }}</td>
+								<td>{{ unit.dispatched }}</td>
+								<td>{{ unit.enroute }}</td>
+								<td>{{ unit.onscene }}</td>
+								<td>{{ unit.clear }}</td>
+							</tr>
+
 						</tbody>
 					</table>
 				</div>
@@ -98,6 +125,8 @@
 			<div class="sidebar-pane" id="settings">
 				<h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 				</h1>
+				<br/>
+				<br/>
 				<p> Radius: <input ng-model="cfg.radius" type="number" id="range" name="range" min="0" max="100"></p>
 				<p> maxOpacity: <input ng-model="cfg.maxOpacity" type="number" id="CfgOpacity" name="CfgOpacity" min="0"
 						max="100"></p>

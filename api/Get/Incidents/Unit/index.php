@@ -9,7 +9,7 @@ if (!isset($_GET['incident']))
 }
 
 $myIncident = $_GET['incident'];
-$result = pg_prepare($con, "myIncidentStmt", 'SELECT dispatched, enroute, onscene, clear FROM public.incidentunit WHERE fk_incidentid = $1');
+$result = pg_prepare($con, "myIncidentStmt", 'select name, dispatched, enroute, onscene, clear from incidentunit JOIN stationunit ON fk_stationunitid = stationunitid WHERE fk_incidentid = $1');
 $result = pg_execute($con, "myIncidentStmt", array($myIncident));
 $myarray = pg_fetch_all($result);
 print(json_encode($myarray, JSON_NUMERIC_CHECK));

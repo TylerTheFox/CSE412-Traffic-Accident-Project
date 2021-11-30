@@ -20,10 +20,10 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		$scope.cfg = {
 			// radius should be small ONLY if scaleRadius is true (or small radius is intended)
 			// if scaleRadius is false it will be the constant radius used in pixels
-			"radius": 0.004,
+			"radius": 30,
 			"maxOpacity": .8,
 			// scales the radius based on map zoom
-			"scaleRadius": true,
+			"scaleRadius": false,
 			// if set to false the heatmap uses the global maximum for colorization
 			// if activated: uses the data maximum within the current map boundaries
 			//   (there will always be a red spot with useLocalExtremas true)
@@ -117,18 +117,21 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		$scope.ApplyDateFilter();
 	}
 
-	$scope.ProcessCallData = function()
-	{
+	$scope.ProcessCallData = function () {
 		console.log($scope.RawUnitData);
-		
 	}
 
-	$scope.GetCallData = function(MyCall)
-	{
-		$http.get("./api/Get/Incidents/Unit/?incident=" + MyCall, { timeout: 5000 }).then(function (response) {
-			$scope.RawUnitData = response.data;
-			$scope.ProcessCallData();
-		});
+	$scope.GetCallData = function (MyCall) {
+		if (MyCall === $scope.CurrentlySelectedCall) {
+			$scope.CurrentlySelectedCall = -1;
+		}
+		else {
+			$http.get("./api/Get/Incidents/Unit/?incident=" + MyCall, { timeout: 5000 }).then(function (response) {
+				$scope.CurrentlySelectedCall = MyCall;
+				$scope.RawUnitData = response.data;
+				$scope.ProcessCallData();
+			});
+		}
 	}
 
 	$scope.HeatUpTheMap = function () {
@@ -197,6 +200,7 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 	$scope.SetCurrentData = function ($arr) {
 		$scope.CurrentData = [];
 		$scope.currentPage = 0;
+		$scope.CurrentlySelectedCall = -1;
 		$scope.CurrentData = $arr;
 		$scope.buildGPSDataFromArray($arr);
 		table.initialize($scope, $arr);
@@ -243,5 +247,6 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		$scope.DateFrom = new Date();
 		$scope.DateTo = new Date();
 		$scope.CurrentData = [];
+		$scope.CurrentlySelectedCall = -1;
 	};
 });
