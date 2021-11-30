@@ -186,19 +186,34 @@ td.chatinputtable {
     display: inline;
 }
 
-tr.row-format 
+.row-format 
 {
     background-color: lightblue !important;
     font-weight: bold !important;
 }
 
-tr.colum-format
+.column-fmt
 {
-    background-color: lightblue !important;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgb(0, 73, 97) !important;
     font-size: 90% !important;
+    color: rgb(255, 255, 255);
 }
 
 .md-datepicker-calendar-pane 
 {
     z-index: 3000 !important;
+}
+
+tr.header {
+    background-color:#0074d9 !important;
+    font-weight:bold !important;
+    color: white;
+}
+
+tr.body {
+    background-color:rgb(0, 73, 97) !important;
+    color: rgb(255, 255, 255);
+    font-size: 90% !important;
 }
