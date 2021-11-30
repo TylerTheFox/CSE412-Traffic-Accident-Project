@@ -2,7 +2,7 @@
 app.controller('mainCtrl', function ($scope, $http, table) {
 	$scope.TableHeaders = ["Date", "Call Number", "Address"];
 	$scope.currentPage = 0;
-    $scope.pageSize = 19;
+	$scope.pageSize = 19;
 
 
 	$scope.initMap = function () {
@@ -94,20 +94,15 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 			var array = $scope.FilteredDate;
 			$scope.SetCurrentData($scope.FilterByDistance(array, circleCenterCoords, circleRadiusMeters));
 		}
-		else {
-			console.log("Error no marker defined");
-		}
 	}
 
-	$scope.ApplyDateFilter = function()
-	{
+	$scope.ApplyDateFilter = function () {
 		$scope.FilteredDate = [];
 
 		for (var i = 0; i < $scope.RawData.length; i++) {
 			var currentDate = Date.parse($scope.RawData[i].received);
 
-			if (currentDate < Date.parse($scope.DateTo) && currentDate > Date.parse($scope.DateFrom))
-			{
+			if (currentDate < Date.parse($scope.DateTo) && currentDate > Date.parse($scope.DateFrom)) {
 				$scope.FilteredDate.push($scope.RawData[i]);
 			}
 		}
@@ -116,11 +111,24 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		$scope.ApplyRangeFilter();
 	}
 
-	$scope.ResetDateFilter = function()
-	{
+	$scope.ResetDateFilter = function () {
 		$scope.DateFrom = $scope.MinDate;
-		$scope.DateTo	= $scope.MaxDate;
+		$scope.DateTo = $scope.MaxDate;
 		$scope.ApplyDateFilter();
+	}
+
+	$scope.ProcessCallData = function()
+	{
+		console.log($scope.RawUnitData);
+		
+	}
+
+	$scope.GetCallData = function(MyCall)
+	{
+		$http.get("./api/Get/Incidents/Unit/?incident=" + MyCall, { timeout: 5000 }).then(function (response) {
+			$scope.RawUnitData = response.data;
+			$scope.ProcessCallData();
+		});
 	}
 
 	$scope.HeatUpTheMap = function () {
@@ -153,8 +161,7 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 	}
 
 	// Inital load processing.
-	$scope.buildGPSDataFromArray = function(arr)
-	{
+	$scope.buildGPSDataFromArray = function (arr) {
 		var temp = new Map();
 		var temp2 = [];
 
@@ -162,19 +169,16 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 			var lat = arr[i].lat;
 			var lng = arr[i].lng;
 
-			if (!temp.has(lat))
-			{
+			if (!temp.has(lat)) {
 				temp.set(lat, new Map());
 			}
-			
+
 			var currentLatMapThing = temp.get(lat);
 
-			if (!currentLatMapThing.has(lng))
-			{
+			if (!currentLatMapThing.has(lng)) {
 				currentLatMapThing.set(lng, 1);
 			}
-			else
-			{
+			else {
 				currentLatMapThing.set(lng, currentLatMapThing.get(lng) + 1);
 			}
 		}
@@ -190,13 +194,24 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		$scope.InitHeatMap();
 	}
 
-	$scope.SetCurrentData = function($arr)
-	{
-			$scope.CurrentData = [];
-			$scope.currentPage = 0;
-			$scope.CurrentData = $arr;
-			$scope.buildGPSDataFromArray($arr);
-			table.initialize($scope, $arr);
+	$scope.SetCurrentData = function ($arr) {
+		$scope.CurrentData = [];
+		$scope.currentPage = 0;
+		$scope.CurrentData = $arr;
+		$scope.buildGPSDataFromArray($arr);
+		table.initialize($scope, $arr);
+	}
+
+	$scope.InitFireStations = function () {
+		for (const station of $scope.Stations) {
+			var MarkerLatLng = new L.LatLng(station.latitude, station.longitude);
+			var MarkerIcon = L.icon({
+				iconUrl: "./images/firedept.png",
+				iconSize: [10, 10]
+			});
+			var Marker = L.marker(MarkerLatLng, { icon: MarkerIcon });
+			Marker.addTo($scope.map);
+		}
 	}
 
 	$scope.init = function (standalone) {
@@ -206,15 +221,22 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		$http.get("./api/Get/Incidents/Gps/", { timeout: 5000 }).then(function (response) {
 			$scope.RawData = response.data;
 
-			$scope.MinDate = new Date( Date.parse($scope.RawData[0].received) );
-			$scope.MaxDate = new Date( Date.parse($scope.RawData[ $scope.RawData.length - 1 ].received)  );
+			console.log($scope.RawData);
+			$scope.MinDate = new Date(Date.parse($scope.RawData[0].received));
+			$scope.MaxDate = new Date(Date.parse($scope.RawData[$scope.RawData.length - 1].received));
 
 			$scope.DateFrom = $scope.MinDate;
-			$scope.DateTo	= $scope.MaxDate;
+			$scope.DateTo = $scope.MaxDate;
 
 			$scope.SetCurrentData($scope.RawData);
 
 			$scope.ApplyDateFilter();
+		});
+
+
+		$http.get("./api/Get/Stations/", { timeout: 5000 }).then(function (response) {
+			$scope.Stations = response.data;
+			$scope.InitFireStations();
 		});
 
 		$scope.distance = 0;

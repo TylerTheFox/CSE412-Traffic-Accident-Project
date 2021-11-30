@@ -1,9 +1,9 @@
 <?PHP
-require_once("../../../../config.php");
+require_once("../../../config.php");
 
 $con = pg_connect("host=$hostname dbname=$database user=$username password=$password") or die ("Could not connect to server\n");
 
-$query = 'SELECT incidentid, callnum, received, description, county, address, fk_stationid, latitude AS "lat", longitude as "lng" FROM public.incident order by received asc';
+$query = "SELECT latitude, longitude FROM public.station WHERE county != 'M'";
 
 $ret = pg_query($con, $query) or die("Cannot execute query: $query\n");
 $myarray = pg_fetch_all($ret);

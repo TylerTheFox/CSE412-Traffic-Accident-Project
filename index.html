@@ -78,12 +78,14 @@
 					<table class="table table-striped table-bordered table-hover">
 						<thead>
 							<tr>
+								<th></th>
 								<th ng-repeat="hdr in TableHeaders">{{ hdr}}</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr
 								ng-repeat="x in (MainDataTable = CurrentData) | startFrom:currentPage * pageSize | limitTo:pageSize">
+								<td><span ng-click="GetCallData(x.incidentid)" class="fa fa-caret-right"></span</td>
 								<td>{{ x.received}}</td>
 								<td>{{ x.callnum}}</td>
 								<td>{{ x.address}}</td>
