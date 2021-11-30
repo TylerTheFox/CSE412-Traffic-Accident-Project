@@ -44,26 +44,16 @@
 				<h5>By Date:</h5>
 
 				<p>
-					<md-datepicker ng-model="DateFrom" md-placeholder="Enter date" md-hide-icons="calendar"
+					<md-datepicker ng-model="DateFrom" md-placeholder="Enter date" md-hide-icons="calendar" md-min-date="MinDate" md-max-date="MaxDate"
 						input-aria-describedby="datepicker-description" input-aria-labelledby="datepicker-header ">
 					</md-datepicker>
 					-
-					<md-datepicker ng-model="DateTo" md-placeholder="Enter date" md-hide-icons="calendar"
+					<md-datepicker ng-model="DateTo" md-placeholder="Enter date" md-hide-icons="calendar" md-min-date="MinDate" md-max-date="MaxDate"
 						input-aria-describedby="datepicker-description" input-aria-labelledby="datepicker-header ">
 					</md-datepicker>
+					<button ng-click="ApplyDateFilter()">Apply</button>
+					<button ng-click="ResetDateFilter()">Reset</button>
 				</p>
-
-				<br />
-				<br />
-				<br />
-				<p> Todo: </p>
-				<p> * List of incidents in a table (with next/prev buttons) </p>
-				<p> * Filtering based on date </p>
-				<p> * Make calender not appear behind mapp/sidebar</p>
-				<p> * Filtering based on radius</p>
-				<p> * Get units api based on call number </p>
-				<p> * Perhaps have the get api display all the fields of the incidents and manually calculate the count
-					part </p>
 			</div>
 
 			<div class="sidebar-pane" id="table">

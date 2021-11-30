@@ -68,7 +68,7 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		if ($scope.CircleFilter !== undefined) {
 			$scope.map.removeLayer($scope.CircleFilter);
 			$scope.CircleFilter = undefined;
-			$scope.buildGPSDataFromArray($scope.RawData);
+			$scope.SetCurrentData($scope.FilteredDate);
 		}
 	}
 
@@ -91,12 +91,36 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 			var circleCenterCoords = $scope.CircleFilter.getLatLng();
 			var circleRadiusMeters = $scope.CircleFilter.getRadius();
 
-			var array = $scope.RawData;
+			var array = $scope.FilteredDate;
 			$scope.SetCurrentData($scope.FilterByDistance(array, circleCenterCoords, circleRadiusMeters));
 		}
 		else {
 			console.log("Error no marker defined");
 		}
+	}
+
+	$scope.ApplyDateFilter = function()
+	{
+		$scope.FilteredDate = [];
+
+		for (var i = 0; i < $scope.RawData.length; i++) {
+			var currentDate = Date.parse($scope.RawData[i].received);
+
+			if (currentDate < Date.parse($scope.DateTo) && currentDate > Date.parse($scope.DateFrom))
+			{
+				$scope.FilteredDate.push($scope.RawData[i]);
+			}
+		}
+
+		$scope.SetCurrentData($scope.FilteredDate);
+		$scope.ApplyRangeFilter();
+	}
+
+	$scope.ResetDateFilter = function()
+	{
+		$scope.DateFrom = $scope.MinDate;
+		$scope.DateTo	= $scope.MaxDate;
+		$scope.ApplyDateFilter();
 	}
 
 	$scope.HeatUpTheMap = function () {
@@ -181,7 +205,16 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		// Let's download the GPS data from our api.
 		$http.get("./api/Get/Incidents/Gps/", { timeout: 5000 }).then(function (response) {
 			$scope.RawData = response.data;
+
+			$scope.MinDate = new Date( Date.parse($scope.RawData[0].received) );
+			$scope.MaxDate = new Date( Date.parse($scope.RawData[ $scope.RawData.length - 1 ].received)  );
+
+			$scope.DateFrom = $scope.MinDate;
+			$scope.DateTo	= $scope.MaxDate;
+
 			$scope.SetCurrentData($scope.RawData);
+
+			$scope.ApplyDateFilter();
 		});
 
 		$scope.distance = 0;
@@ -190,4 +223,3 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		$scope.CurrentData = [];
 	};
 });
-
