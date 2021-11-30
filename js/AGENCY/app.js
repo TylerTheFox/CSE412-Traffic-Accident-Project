@@ -17,8 +17,6 @@ app.filter('startFrom', function () {
 app.factory('table', function ($rootScope) {
     function initialize($scope, datamember)
     {
-        console.log("penis");
-        
         $scope.currentPage = 0;
         $scope.pageSize = 15;
         $scope.isAllSelected = false;

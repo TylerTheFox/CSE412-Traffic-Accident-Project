@@ -154,3 +154,7 @@ td.chatinputtable {
 {
     color: red;
 }
+
+.md-datepicker-calendar-pane {
+    z-index: 3000 !important;
+}
