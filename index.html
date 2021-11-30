@@ -12,10 +12,9 @@
 		<!-- Nav tabs -->
 		<div class="sidebar-tabs">
 			<ul role="tablist">
-				<li><a ng-click="AppData.Page = 'homeCtrl'" href="#home" role="tab" title="Info"><i
-							class="fa fa-bars"></i></a></li>
-				<li><a ng-click="AppData.Page = 'homeCtrl'" href="#table" role="tab" title="Info"><i
-							class="fa fa-table"></i></a></li>
+				<li><a href="#home" role="tab" title="Info"><i class="fa fa-bars"></i></a></li>
+				<li><a href="#filter" role="tab" title="Info"><i class="fa fa-filter"></i></a></li>
+				<li><a href="#table" role="tab" title="Info"><i class="fa fa-table"></i></a></li>
 			</ul>
 
 			<ul role="tablist">
@@ -28,11 +27,20 @@
 		<div class="sidebar-content">
 			<div class="sidebar-pane" id="home">
 				<h1 class="sidebar-header">
-					Traffic Accidents
+					CSE412 - Traffic Accidents Project
 					<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 				</h1>
 				<br />
 				<h3>Welcome!</h3>
+
+				<p> Instructions go here </p>
+			</div>
+
+			<div class="sidebar-pane" id="filter">
+				<h1 class="sidebar-header">
+					Filter Options
+					<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+				</h1>
 				<br />
 				<h3>Filter Options:</h3>
 
@@ -132,8 +140,9 @@
 								<td>{{ unit.clear }}</td>
 							</tr>
 
-							<tr  ng-if="x.incidentid === CurrentlySelectedCall" ng-repeat-end>                                   
-								<td class="column-fmt" colspan="5" ng-if="!RawUnitData.length">No unit data available for accident.</td>
+							<tr ng-if="x.incidentid === CurrentlySelectedCall" ng-repeat-end>
+								<td class="column-fmt" colspan="5" ng-if="!RawUnitData.length">No unit data available
+									for accident.</td>
 							</tr>
 
 						</tbody>
@@ -143,9 +152,9 @@
 
 
 			<div class="sidebar-pane" id="settings">
-				<h1 class="sidebar-header">Map Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+				<h1 class="sidebar-header">Map Settings<span class="sidebar-close"><i
+							class="fa fa-caret-left"></i></span>
 				</h1>
-				<br />
 				<br />
 				<p> Radius: <input ng-model="cfg.radius" type="number" id="range" name="range" min="0" max="100"></p>
 				<p> maxOpacity: <input ng-model="cfg.maxOpacity" type="number" id="CfgOpacity" name="CfgOpacity" min="0"
