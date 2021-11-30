@@ -117,10 +117,6 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		$scope.ApplyDateFilter();
 	}
 
-	$scope.ProcessCallData = function () {
-		console.log($scope.RawUnitData);
-	}
-
 	$scope.GetCallData = function (MyCall) {
 		if (MyCall === $scope.CurrentlySelectedCall) {
 			$scope.CurrentlySelectedCall = -1;
@@ -129,7 +125,6 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 			$http.get("./api/Get/Incidents/Unit/?incident=" + MyCall, { timeout: 5000 }).then(function (response) {
 				$scope.CurrentlySelectedCall = MyCall;
 				$scope.RawUnitData = response.data;
-				$scope.ProcessCallData();
 			});
 		}
 	}
@@ -224,16 +219,11 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		// Let's download the GPS data from our api.
 		$http.get("./api/Get/Incidents/Gps/", { timeout: 5000 }).then(function (response) {
 			$scope.RawData = response.data;
-
-			console.log($scope.RawData);
 			$scope.MinDate = new Date(Date.parse($scope.RawData[0].received));
 			$scope.MaxDate = new Date(Date.parse($scope.RawData[$scope.RawData.length - 1].received));
-
 			$scope.DateFrom = $scope.MinDate;
 			$scope.DateTo = $scope.MaxDate;
-
 			$scope.SetCurrentData($scope.RawData);
-
 			$scope.ApplyDateFilter();
 		});
 
