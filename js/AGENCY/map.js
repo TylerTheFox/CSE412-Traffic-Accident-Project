@@ -43,33 +43,50 @@ app.controller('mainCtrl', function ($scope, $http)
 	$scope.heatmapLayer.setData(heatMapData);
     }
 
-    $scope.AddRadiusMarker = function()
+    $scope.PlaceRadiusMarker = function()
     {
 	var latlng = $scope.map.getCenter();
 	if ($scope.CircleFilter === undefined)
 	{
-		$scope.CircleFilter = L.circle(latlng, {radius: 10000});
-		var radius = Math.floor($scope.CircleFilter.getRadius()*0.000621371);
+		// initialize circle with 5 mile radius (in meters)
+		$scope.CircleFilter = L.circle(latlng, {radius: 8046});
+		//var radius = Math.floor($scope.CircleFilter.getRadius()*0.000621371);
+		var radius = ($scope.CircleFilter.getRadius()*0.000621371).toFixed(1);
+		//radius = radius.toFixed(1);
 		var radiusText = `${radius} miles`;
 		var point = L.point([0,8]);
 		$scope.CircleText = L.tooltip({permanent:true,direction:'bottom',offset:point,opacity:0.9,className:'text'});
 		$scope.CircleText.setContent(radiusText);
+		
+		// initializes circle radius and binds radius info tooltip to center.
 		$scope.CircleFilter.bindTooltip($scope.CircleText);
 		$scope.CircleFilter.editing.enable();
 		$scope.CircleFilter.addTo($scope.map);
+		$scope.ApplyRangeFilter();
+		
+		// when the circle filter is present, this ensures the current lat,lng are updated when it moves
+		$scope.map.on('draw:editmove', function(event) {
+                        $scope.ApplyRangeFilter();
+                });
+
+		// when the circle filter is present, this ensures radius size of bound tooltip is accurate when resized
 		$scope.map.on('draw:editresize', function(event) {
 			var layer = event.layer;
-			var radius = Math.floor(layer.getRadius()*0.000621371);
+			var radius = (layer.getRadius()*0.000621371).toFixed(1);
 			var radiusText = `${radius} miles`
 			$scope.CircleText.setContent(radiusText);
 			layer.bindTooltip($scope.CircleText);
+			$scope.ApplyRangeFilter();
 		});
+		
         }
 	else
 	{
-		$scope.CircleFilter.editing.disable();
-		$scope.CircleFilter.setLatLng(latlng);
-		$scope.CircleFilter.editing.enable();
+		$scope.ApplyRangeFilter();
+		//$scope.CircleFilter.editing.disable();
+		//$scope.CircleFilter.setLatLng(latlng);
+		//$scope.CircleFilter.editing.enable();
+		// call applyRangeFilter here...?
 	}
     }
 
@@ -79,24 +96,93 @@ app.controller('mainCtrl', function ($scope, $http)
 	{
 		$scope.map.removeLayer($scope.CircleFilter);
 		$scope.CircleFilter = undefined;
+		$scope.ApplyRangeFilter();
 	}
     }
+
+    $scope.FilterByDistance = function(array, latLng, radius)
+    {
+        const filteredArray = [];
+	
+	for(var i = 0; i < array.length; i++)
+        {
+		var coords = L.latLng(array[i].lat,array[i].lng);
+        	if(latLng.distanceTo(coords) <= radius)
+		{
+			let dist = latLng.distanceTo(coords);
+			filteredArray.push(array[i]);
+			//console.log(`Distance for incident ${i} was ${dist} circle coords: ${latLng.lat}, ${latLng.lng}`);
+			//console.log(`Incident ${i} coords were ${array[i].lat}, ${array[i].lng}`);
+        	}
+	}
+
+        return filteredArray;
+    }
+
 
     $scope.ApplyRangeFilter = function()
     {
-	if ($scope.MarkerFilter !== undefined)
+	if ($scope.CircleFilter !== undefined)
 	{
-		var currentMarkerLatLng = $scope.MarkerFilter.getLatLng();
-		var currentRadiusInMiles = $scope.distance;
+		var circleCenterCoords = $scope.CircleFilter.getLatLng();
+		var circleRadiusMeters = $scope.CircleFilter.getRadius();
+		
+		// header denoting filtered incidents from circler filter
+		var header = document.getElementById("distanceHeader");
+		header.style.display = "block";
 
-		console.log(currentMarkerLatLng);
-		console.log(currentRadiusInMiles);
+		// header denoting current coordinates of circle filter
+		var current = document.getElementById("distanceCoords");
+		current.innerHTML = "Current: " + circleCenterCoords.lat+", " + circleCenterCoords.lng;
+		current.style.display = "block";
+
+		// nested div that filtered data will be appended to on the html doc
+		var filteredDiv = document.getElementById("filteredData");
+
+		// remove any previous 
+		if(filteredDiv.childNodes.length !== 0)
+		{
+                	while(filteredDiv.firstChild)
+                	{
+                    		filteredDiv.removeChild(filteredDiv.firstChild);
+                	}
+
+		}
+
+		var array = $scope.GPSData;
+		var filtered = $scope.FilterByDistance(array, circleCenterCoords, circleRadiusMeters);
+
+		for(var i = 0; i < filtered.length; i++)
+		{
+			var incident = document.createElement("div");
+                	var incidentInfo = `${filtered[i].lat}, ${filtered[i].lng}`;
+                
+                	incident.innerHTML = incidentInfo;
+                	filteredDiv.appendChild(incident);
+		}
+
     	}
 	else
 	{
+		// hide header denoting filtered incidents from circler filter
+                var header = document.getElementById("distanceHeader");
+                header.style.display = "none";
+
+                // hide header denoting current coordinates of circle filter
+                var current = document.getElementById("distanceCoords");
+                current.innerHTML = "";
+		current.style.display = "none";
+
+		// removes all elements of the specified div when marker is removed.
+		var div = document.getElementById("filteredData");
+		while(div.firstChild)
+		{
+		    div.removeChild(div.firstChild);
+		}
 		console.log("Error no marker defined");
 	}
     }
+
 
     $scope.InitHeatMap = function()
     {
@@ -122,6 +208,7 @@ app.controller('mainCtrl', function ($scope, $http)
         $http.get("./api/Get/Incidents/Gps/", {timeout: 5000}).then(function (response)
         {
 		$scope.GPSData = response.data;
+		console.log(response.data);
 		$scope.InitHeatMap();
 	});
 	$scope.distance = 0;

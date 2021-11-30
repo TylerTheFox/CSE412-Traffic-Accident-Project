@@ -35,17 +35,28 @@
                         -
 			<md-datepicker ng-model="DateTo" md-placeholder="Enter date" input-aria-describedby="datepicker-description" input-aria-labelledby="datepicker-header "></md-datepick>
 		    </span>
-
-		    <br/>
-		    <h3> Filter Control Test: </h3>
-                    <button ng-click="AddRadiusMarker()">
-                    	Add  Marker
-		    </button>
+		    <br>
+		    <br>
 		    
-		    <h3> Filer Removal Test: </h3>
+		    <h4>Filter Marker Place/Remove Testing: </h4>
+                    <button ng-click="PlaceRadiusMarker()">
+                    	Place  Marker
+		    </button>
+		    <br>
+		    <!--<h3> Filer Marker Removal Test: </h3>-->
 		    <button ng-click="RemoveRadiusMarker()">
 			Remove Marker
 		    </button>
+		    <br>
+		    <br>
+		
+		    <!--<h4>Filtered Data: </h4>-->
+		    <div id="distanceDiv">
+			<h4 style="display:none" id="distanceHeader">Filtered Results: </h4>
+			<h6 style="display:none" id="distanceCoords"></h6>
+			<div style="overflow:scroll;max-height:100px;" id="filteredData"></div>
+		    </div>
+		    <br>
 		    <!--
 		    <input ng-model="distance" type="number" id="range" name="range" min="10" max="100">
                     <span> mi </span>
@@ -66,9 +77,12 @@
                     <br/>
                     <br/>
 		    <p> Todo: </p>
-		    <p> * List of incidents on the map (might be too many) </p>
-		    <p> * Date filters </p> 
-		    <p> * Location control? Adjustable radius? </p>
+		    <p> * List of incidents in a table (with next/prev buttons) </p>
+		    <p> * Filtering based on date </p>
+	            <p> * Make calender not appear behind mapp/sidebar</p> 
+		    <p> * Filtering based on radius</p>
+		    <p> * Get units api based on call number </p>
+		    <p> * Perhaps have the get api display all the fields of the incidents and manually calculate the count part </p>	
                 </div>
 	     </div>
 	</div>	
