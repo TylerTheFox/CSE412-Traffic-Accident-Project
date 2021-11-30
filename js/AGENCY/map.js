@@ -1,6 +1,6 @@
 // Main
 app.controller('mainCtrl', function ($scope, $http, table) {
-	$scope.TableHeaders = ["Date", "Call Number", "Description", "Address"];
+	$scope.TableHeaders = ["Date", "Call Num", "Description", "Address"];
 	$scope.currentPage = 0;
 	$scope.pageSize = 19;
 

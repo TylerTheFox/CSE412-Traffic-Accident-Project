@@ -145,9 +145,9 @@ td.chatinputtable {
     z-index: 100000;
 }
 
-.buttons-float-right 
+.buttons-float-left 
 {
-    float: right;
+    float: left;
 }
 
 .delete 
@@ -155,6 +155,12 @@ td.chatinputtable {
     color: red;
 }
 
-.md-datepicker-calendar-pane {
+.md-datepicker-calendar-pane 
+{
     z-index: 3000 !important;
+}
+
+.inline-hdr
+{
+    display:inline;
 }
