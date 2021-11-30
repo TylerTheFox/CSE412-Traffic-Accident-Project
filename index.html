@@ -41,7 +41,7 @@
 
 					<i class="fas fa-map-marked-alt apply" ng-click="PlaceRadiusMarker()"></i>
 					<i class="far fa-times-circle remove" ng-click="RemoveRadiusMarker()"></i>
-					<h5 ng-if="Radius !== 0">Radius = {{ Radius }} (Miles)</h5>
+					<h5 ng-if="Radius > 0">Radius = {{ Radius }} (Miles)</h5>
 
 				</h4>
 				<br />
@@ -115,7 +115,7 @@
 								<td>{{ x.address }}</td>
 							</tr>
 
-							<tr ng-if="x.incidentid === CurrentlySelectedCall">
+							<tr class="row-format" ng-if="x.incidentid === CurrentlySelectedCall">
 								<td>Unit</td>
 								<td>Dispatched</td>
 								<td>En-route</td>
@@ -123,13 +123,17 @@
 								<td>Clear</td>
 							</tr>
 
-							<tr ng-if="x.incidentid === CurrentlySelectedCall" ng-repeat-end
+							<tr class="column-format" ng-if="x.incidentid === CurrentlySelectedCall" ng-repeat-end
 								ng-repeat="unit in RawUnitData">
 								<td>{{ unit.name }}</td>
 								<td>{{ unit.dispatched }}</td>
 								<td>{{ unit.enroute }}</td>
 								<td>{{ unit.onscene }}</td>
 								<td>{{ unit.clear }}</td>
+							</tr>
+
+							<tr class="column-format" ng-if="x.incidentid === CurrentlySelectedCall" ng-repeat-end>                                   
+								<td align="center" colspan="5" ng-if="!RawUnitData.length">No unit data available for accident.</td>
 							</tr>
 
 						</tbody>
