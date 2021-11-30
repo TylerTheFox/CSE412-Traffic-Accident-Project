@@ -2,7 +2,7 @@
 <html ng-app="myApp" ng-controller="mainCtrl" ng-init="init(false);">
 
 <head>
-	<title>CSE412 - Traffic Accidents</title>
+	<title>412 - Traffic Accidents</title>
 	<meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no">
 </head>
 
@@ -28,65 +28,77 @@
 		<div class="sidebar-content">
 			<div class="sidebar-pane" id="home">
 				<h1 class="sidebar-header">
-					CSE412 - Traffic Accidents
+					Traffic Accidents
 					<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 				</h1>
 				<br />
-				<h3> Welcome!</h3>
+				<h3>Welcome!</h3>
 				<br />
-				<h4>Filter Options:</h4>
+				<h3>Filter Options:</h3>
 
-				<h5>By Area:
-					<i class="fas fa-map-marker-alt" ng-click="PlaceRadiusMarker()"></i>
-					<i class="fas fa-ban" ng-click="RemoveRadiusMarker()"></i>
-				</h5>
+				<h4>By Area:
+					<br />
+					<i class="fas fa-map-marked-alt apply" ng-click="PlaceRadiusMarker()"></i>
+					<i class="far fa-times-circle apply" ng-click="RemoveRadiusMarker()"></i>
+
+				</h4>
 				<br />
-				<h5>By Date:</h5>
+				<h4>By Date:
+					<br />
 
-				<p>
 					<md-datepicker ng-model="DateFrom" md-placeholder="Enter date" md-hide-icons="calendar"
 						md-min-date="MinDate" md-max-date="MaxDate" input-aria-describedby="datepicker-description"
 						input-aria-labelledby="datepicker-header ">
 					</md-datepicker>
-					-
+
+					&ndash;
+
 					<md-datepicker ng-model="DateTo" md-placeholder="Enter date" md-hide-icons="calendar"
 						md-min-date="MinDate" md-max-date="MaxDate" input-aria-describedby="datepicker-description"
 						input-aria-labelledby="datepicker-header ">
 					</md-datepicker>
-					<button ng-click="ApplyDateFilter()">Apply</button>
-					<button ng-click="ResetDateFilter()">Reset</button>
-				</p>
+
+					<h3>
+						<i class="far far fa-calendar-check apply" ng-click="ApplyDateFilter()"></i>
+						<i class="far fa-calendar-times remove" ng-click="ResetDateFilter()"></i>
+					</h3>
+				</h4>
 			</div>
 
 			<div class="sidebar-pane" id="table">
 				<h1 class="sidebar-header">
-					CSE412 - Table
+					Accident Information Table
 					<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 				</h1>
 				<br />
 				<div>
-					<div class="buttons-float-right">
-						<button class="btn btn-info" ng-disabled="currentPage == 0"
+					<div class="float-left">
+						<button class="btn btn-info float-left" ng-disabled="currentPage == 0"
 							ng-click="currentPage = currentPage - 1">
-							&lt;
+							<i class="fas fa-caret-left nested-white"></i>
 						</button>
-						{{currentPage + 1}}/{{numberOfPages()}}
-						<button class="btn btn-info" ng-disabled="currentPage >= MainDataTable.length / pageSize - 1"
+
+						<h5 class="inline-hdr">&ensp;{{currentPage + 1}}/{{numberOfPages()}}&ensp;</h5>
+
+						<button class="btn btn-info float-right"
+							ng-disabled="currentPage >= MainDataTable.length / pageSize - 1"
 							ng-click="currentPage = currentPage + 1">
-							&gt;
+							<i class="fas fa-caret-right nested-white"></i>
 						</button>
 					</div>
+					<br />
+					<br />
+					<br />
 
-					<table class="table table-striped table-bordered table-hover">
+					<table class="table table-striped table-bordered table-hover table-sizing">
 						<thead>
 							<tr>
 								<th></th>
-								<th ng-repeat="hdr in TableHeaders">{{ hdr}}</th>
-								<th></th>
+								<th ng-repeat="hdr in TableHeaders">{{ hdr }}</th>
 							</tr>
 						</thead>
-						<tbody>
 
+						<tbody>
 							<tr
 								ng-repeat-start="x in (MainDataTable = CurrentData) | startFrom:currentPage * pageSize | limitTo:pageSize">
 								<td>
@@ -99,18 +111,18 @@
 								<td>{{ x.callnum }}</td>
 								<td>{{ x.description }}</td>
 								<td>{{ x.address }}</td>
-
 							</tr>
 
 							<tr ng-if="x.incidentid === CurrentlySelectedCall">
 								<td>Unit</td>
 								<td>Dispatched</td>
 								<td>En-route</td>
-								<td>On Scene</td>
+								<td>On-scene</td>
 								<td>Clear</td>
 							</tr>
 
-							<tr ng-if="x.incidentid === CurrentlySelectedCall" ng-repeat-end ng-repeat="unit in RawUnitData">
+							<tr ng-if="x.incidentid === CurrentlySelectedCall" ng-repeat-end
+								ng-repeat="unit in RawUnitData">
 								<td>{{ unit.name }}</td>
 								<td>{{ unit.dispatched }}</td>
 								<td>{{ unit.enroute }}</td>
@@ -123,11 +135,12 @@
 				</div>
 			</div>
 
+
 			<div class="sidebar-pane" id="settings">
 				<h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 				</h1>
-				<br/>
-				<br/>
+				<br />
+				<br />
 				<p> Radius: <input ng-model="cfg.radius" type="number" id="range" name="range" min="0" max="100"></p>
 				<p> maxOpacity: <input ng-model="cfg.maxOpacity" type="number" id="CfgOpacity" name="CfgOpacity" min="0"
 						max="100"></p>
@@ -139,7 +152,6 @@
 			</div>
 		</div>
 	</div>
-
 
 
 	<div id="map" class="sidebar-map"></div>
