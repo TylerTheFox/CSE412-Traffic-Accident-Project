@@ -6,7 +6,7 @@ $files = array
     './css/leaflet.css',
     './css/leaflet.draw.css',
     './css/leaflet-sidebar.css',
-    './css/font-awesome.min.css',
+    './css/all.css',
     './css/angular-material.min.css',
     './css/main.css'
 );

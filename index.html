@@ -3,7 +3,6 @@
 
 <head>
 	<title>CSE412 - Traffic Accidents</title>
-
 	<meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no">
 </head>
 
@@ -21,7 +20,7 @@
 
 			<ul role="tablist">
 				<li><a ng-click="AppData.Page = 'settingsCtrl'" href="#settings" role="tab" title="Settings"><i
-							class="fa fa-gear"></i></a></li>
+							class="fas fa-cogs"></i></a></li>
 			</ul>
 		</div>
 
@@ -34,46 +33,25 @@
 				</h1>
 				<br />
 				<h3> Welcome!</h3>
+				<br />
+				<h4>Filter Options:</h4>
 
-				<h4 id="datepicker-header">Date Range</h4>
-				<span>
-					<md-datepicker ng-model="DateFrom" md-placeholder="Enter date"
+				<h5>By Area:
+					<i class="fas fa-map-marker-alt" ng-click="PlaceRadiusMarker()"></i>
+					<i class="fas fa-ban" ng-click="RemoveRadiusMarker()"></i>
+				</h5>
+				<br />
+				<h5>By Date:</h5>
+
+				<p>
+					<md-datepicker ng-model="DateFrom" md-placeholder="Enter date" md-hide-icons="calendar"
 						input-aria-describedby="datepicker-description" input-aria-labelledby="datepicker-header ">
 					</md-datepicker>
 					-
-					<md-datepicker ng-model="DateTo" md-placeholder="Enter date"
+					<md-datepicker ng-model="DateTo" md-placeholder="Enter date" md-hide-icons="calendar"
 						input-aria-describedby="datepicker-description" input-aria-labelledby="datepicker-header ">
-						</md-datepick>
-				</span>
-				<br>
-				<br />
-
-				<h4>Filter Marker: </h4>
-				<span>
-					<button ng-click="PlaceRadiusMarker()">
-						Place Marker
-					</button>
-					<button ng-click="RemoveRadiusMarker()">
-						Remove Marker
-					</button>
-				</span>
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<h3> Test Settings </h3>
-				<p> Radius: <input ng-model="cfg.radius" type="number" id="range" name="range" min="0" max="100"></p>
-				<p> maxOpacity: <input ng-model="cfg.maxOpacity" type="number" id="CfgOpacity" name="CfgOpacity" min="0"
-						max="100"></p>
-				<p> scaleRadius: <input ng-model="cfg.scaleRadius" type="checkbox" id="CfgScaleRadius"
-						name="CfgScaleRadius"></p>
-				<p> useLocalExtrema: <input ng-model="cfg.useLocalExtrema" type="checkbox" id="CfgExtreme"
-						name="CfgExtreme"></p>
-				<button ng-click="ApplyCfg()">Apply</button>
-
-				<p> {{CurrentData.length}} </p>
+					</md-datepicker>
+				</p>
 
 				<br />
 				<br />
@@ -114,7 +92,8 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="x in (MainDataTable = CurrentData) | startFrom:currentPage * pageSize | limitTo:pageSize">
+							<tr
+								ng-repeat="x in (MainDataTable = CurrentData) | startFrom:currentPage * pageSize | limitTo:pageSize">
 								<td>{{ x.received}}</td>
 								<td>{{ x.callnum}}</td>
 								<td>{{ x.address}}</td>
@@ -123,12 +102,23 @@
 					</table>
 				</div>
 			</div>
+
+			<div class="sidebar-pane" id="settings">
+				<h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+				</h1>
+				<p> Radius: <input ng-model="cfg.radius" type="number" id="range" name="range" min="0" max="100"></p>
+				<p> maxOpacity: <input ng-model="cfg.maxOpacity" type="number" id="CfgOpacity" name="CfgOpacity" min="0"
+						max="100"></p>
+				<p> scaleRadius: <input ng-model="cfg.scaleRadius" type="checkbox" id="CfgScaleRadius"
+						name="CfgScaleRadius"></p>
+				<p> useLocalExtrema: <input ng-model="cfg.useLocalExtrema" type="checkbox" id="CfgExtreme"
+						name="CfgExtreme"></p>
+				<button ng-click="ApplyCfg()">Apply</button>
+			</div>
 		</div>
 	</div>
 
-	<div class="sidebar-pane" id="settings">
-		<h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-	</div>
+
 
 	<div id="map" class="sidebar-map"></div>
 
