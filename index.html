@@ -28,79 +28,63 @@
 		<div class="sidebar-content">
 			<div class="sidebar-pane" id="home">
 				<h1 class="sidebar-header">
-					Traffic Accidents
+					CSE412 - Traffic Accidents
 					<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 				</h1>
 				<br />
 				<h3> Welcome!</h3>
 				<br />
-				<h3>Filter Options:</h3>
+				<h4>Filter Options:</h4>
 
-				<h4>By Area:
-					<br />
-					<i class="fas fa-map-marked-alt" ng-click="PlaceRadiusMarker()"></i>
-					<i class="far fa-times-circle" ng-click="RemoveRadiusMarker()"></i>
-
-				</h4>
+				<h5>By Area:
+					<i class="fas fa-map-marker-alt" ng-click="PlaceRadiusMarker()"></i>
+					<i class="fas fa-ban" ng-click="RemoveRadiusMarker()"></i>
+				</h5>
 				<br />
-				<h4>By Date:
-					<br />
+				<h5>By Date:</h5>
+
+				<p>
 					<md-datepicker ng-model="DateFrom" md-placeholder="Enter date" md-hide-icons="calendar"
 						md-min-date="MinDate" md-max-date="MaxDate" input-aria-describedby="datepicker-description"
 						input-aria-labelledby="datepicker-header ">
 					</md-datepicker>
-					&ndash;
-
+					-
 					<md-datepicker ng-model="DateTo" md-placeholder="Enter date" md-hide-icons="calendar"
 						md-min-date="MinDate" md-max-date="MaxDate" input-aria-describedby="datepicker-description"
 						input-aria-labelledby="datepicker-header ">
 					</md-datepicker>
-
-					<h3>
-						<i class="far far fa-calendar-check" ng-click="ApplyDateFilter()"></i>
-						<i class="far fa-calendar-times" ng-click="ResetDateFilter()"></i>
-					</h3>
-				</h4>
+					<button ng-click="ApplyDateFilter()">Apply</button>
+					<button ng-click="ResetDateFilter()">Reset</button>
+				</p>
 			</div>
 
 			<div class="sidebar-pane" id="table">
 				<h1 class="sidebar-header">
-					Accident Information Table
+					CSE412 - Table
 					<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 				</h1>
 				<br />
 				<div>
-
-					<div class="buttons-float-left">
-
+					<div class="buttons-float-right">
 						<button class="btn btn-info" ng-disabled="currentPage == 0"
 							ng-click="currentPage = currentPage - 1">
-							<i class="fas fa-caret-left"></i>
+							&lt;
 						</button>
-
-						<h5 class="inline-hdr">&ensp;{{currentPage + 1}}/{{numberOfPages()}}&ensp;</h5>
-
-						<button class="btn btn-info"
-							ng-disabled="currentPage >= MainDataTable.length / pageSize - 1"
+						{{currentPage + 1}}/{{numberOfPages()}}
+						<button class="btn btn-info" ng-disabled="currentPage >= MainDataTable.length / pageSize - 1"
 							ng-click="currentPage = currentPage + 1">
-							<i class="fas fa-caret-right"></i>
+							&gt;
 						</button>
-
 					</div>
-					<br />
-					<br />
-					<br />
 
-					<table class="table table-striped table-bordered table-hover" style="width:80%;font-size:80%">
-						
+					<table class="table table-striped table-bordered table-hover">
 						<thead>
 							<tr>
 								<th></th>
-								<th ng-repeat="hdr in TableHeaders">{{hdr}}</th>
+								<th ng-repeat="hdr in TableHeaders">{{ hdr}}</th>
+								<th></th>
 							</tr>
-
 						</thead>
-						
 						<tbody>
 
 							<tr
@@ -115,6 +99,7 @@
 								<td>{{ x.callnum }}</td>
 								<td>{{ x.description }}</td>
 								<td>{{ x.address }}</td>
+
 							</tr>
 
 							<tr ng-if="x.incidentid === CurrentlySelectedCall">
@@ -125,8 +110,7 @@
 								<td>Clear</td>
 							</tr>
 
-							<tr ng-if="x.incidentid === CurrentlySelectedCall" ng-repeat-end
-								ng-repeat="unit in RawUnitData">
+							<tr ng-if="x.incidentid === CurrentlySelectedCall" ng-repeat-end ng-repeat="unit in RawUnitData">
 								<td>{{ unit.name }}</td>
 								<td>{{ unit.dispatched }}</td>
 								<td>{{ unit.enroute }}</td>
@@ -142,8 +126,8 @@
 			<div class="sidebar-pane" id="settings">
 				<h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 				</h1>
-				<br />
-				<br />
+				<br/>
+				<br/>
 				<p> Radius: <input ng-model="cfg.radius" type="number" id="range" name="range" min="0" max="100"></p>
 				<p> maxOpacity: <input ng-model="cfg.maxOpacity" type="number" id="CfgOpacity" name="CfgOpacity" min="0"
 						max="100"></p>
@@ -155,6 +139,7 @@
 			</div>
 		</div>
 	</div>
+
 
 
 	<div id="map" class="sidebar-map"></div>

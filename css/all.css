@@ -712,9 +712,7 @@ readers do not read off random characters that represent icons */
   content: "\f073"; }
 
 .fa-calendar-check:before {
-  content: "\f274"; 
-  color: SeaGreen;
-}
+  content: "\f274"; }
 
 .fa-calendar-day:before {
   content: "\f783"; }
@@ -726,9 +724,7 @@ readers do not read off random characters that represent icons */
   content: "\f271"; }
 
 .fa-calendar-times:before {
-  content: "\f273"; 
-  color: FireBrick;
-}
+  content: "\f273"; }
 
 .fa-calendar-week:before {
   content: "\f784"; }
@@ -776,14 +772,10 @@ readers do not read off random characters that represent icons */
   content: "\f0d7"; }
 
 .fa-caret-left:before {
-  content: "\f0d9"; 
-  color: White;
-}
+  content: "\f0d9"; }
 
 .fa-caret-right:before {
-  content: "\f0da"; 
-  color: White;
-}
+  content: "\f0da"; }
 
 .fa-caret-square-down:before {
   content: "\f150"; }
@@ -2601,9 +2593,7 @@ readers do not read off random characters that represent icons */
   content: "\f59f"; }
 
 .fa-map-marked-alt:before {
-  content: "\f5a0";
-  color: SeaGreen;
-}
+  content: "\f5a0"; }
 
 .fa-map-marker:before {
   content: "\f041"; }
@@ -4013,9 +4003,7 @@ readers do not read off random characters that represent icons */
   content: "\f00d"; }
 
 .fa-times-circle:before {
-  content: "\f057"; 
-  color: FireBrick;
-}
+  content: "\f057"; }
 
 .fa-tint:before {
   content: "\f043"; }
