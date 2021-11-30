@@ -186,16 +186,16 @@ td.chatinputtable {
     display: inline;
 }
 
-.row-format
+tr.row-format 
 {
-    background-color: lightblue;
-    font-weight: bold;
+    background-color: lightblue !important;
+    font-weight: bold !important;
 }
 
-.colum-format
+tr.colum-format
 {
-    background-color: lightblue;
-    font-size: 90%;
+    background-color: lightblue !important;
+    font-size: 90% !important;
 }
 
 .md-datepicker-calendar-pane 

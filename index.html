@@ -115,7 +115,7 @@
 								<td>{{ x.address }}</td>
 							</tr>
 
-							<tr class="row-format" ng-if="x.incidentid === CurrentlySelectedCall">
+							<tr style="background-color:lightblue;font-weight:bold" ng-if="x.incidentid === CurrentlySelectedCall">
 								<td>Unit</td>
 								<td>Dispatched</td>
 								<td>En-route</td>
@@ -123,7 +123,7 @@
 								<td>Clear</td>
 							</tr>
 
-							<tr class="column-format" ng-if="x.incidentid === CurrentlySelectedCall"
+							<tr style="background-color:lightblue;font-size: 90%" ng-if="x.incidentid === CurrentlySelectedCall"
 								ng-repeat="unit in RawUnitData">
 								<td>{{ unit.name }}</td>
 								<td>{{ unit.dispatched }}</td>
@@ -132,7 +132,7 @@
 								<td>{{ unit.clear }}</td>
 							</tr>
 
-							<tr class="column-format" ng-if="x.incidentid === CurrentlySelectedCall" ng-repeat-end>                                   
+							<tr style="background-color:lightblue;font-size: 90%" ng-if="x.incidentid === CurrentlySelectedCall" ng-repeat-end>                                   
 								<td align="center" colspan="5" ng-if="!RawUnitData.length">No unit data available for accident.</td>
 							</tr>
 
