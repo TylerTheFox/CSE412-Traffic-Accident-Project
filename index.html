@@ -1,100 +1,141 @@
 <!DOCTYPE html>
 <html ng-app="myApp" ng-controller="mainCtrl" ng-init="init(false);">
-    <head>
-        <title>CSE412 - Traffic Accidents</title>
 
-        <meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no">
-    </head>
-    <body>
-        <img class="agency-logo" src="./images/agency.png" alt="AGENCY 9-1-1" style="width:132px;height:132px;">
-        <div id="sidebar" class="sidebar collapsed">
-            <!-- Nav tabs -->
-            <div class="sidebar-tabs">
-                <ul role="tablist">
-                    <li><a ng-click="AppData.Page = 'homeCtrl'" href="#home" role="tab" title="Info"><i class="fa fa-bars"></i></a></li>
-                </ul>
-        
-                <ul role="tablist">
-                    <li><a ng-click="AppData.Page = 'settingsCtrl'" href="#settings" role="tab" title="Settings"><i class="fa fa-gear"></i></a></li>
-                </ul>
-	    </div>
+<head>
+	<title>CSE412 - Traffic Accidents</title>
 
-            <!-- Tab panes -->
-            <div class="sidebar-content">
-                <div class="sidebar-pane" id="home">
-                    <h1 class="sidebar-header">
-                        CSE412 - Traffic Accidents
-                        <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
-                    </h1>
-                    <br>
-                    <h3> Welcome!</h3>
+	<meta name="viewport" content="width=device-width, initial-scale=0.8, maximum-scale=1.0, user-scalable=no">
+</head>
 
-      	            <h4 id="datepicker-header">Date Range</h4>
-		    <span>
-			<md-datepicker ng-model="DateFrom" md-placeholder="Enter date" input-aria-describedby="datepicker-description" input-aria-labelledby="datepicker-header "></md-datepicker>
-                        -
-			<md-datepicker ng-model="DateTo" md-placeholder="Enter date" input-aria-describedby="datepicker-description" input-aria-labelledby="datepicker-header "></md-datepick>
-		    </span>
-		    <br>
-		    <br>
-		    
-		    <h4>Filter Marker Place/Remove Testing: </h4>
-                    <button ng-click="PlaceRadiusMarker()">
-                    	Place  Marker
-		    </button>
-		    <br>
-		    <!--<h3> Filer Marker Removal Test: </h3>-->
-		    <button ng-click="RemoveRadiusMarker()">
-			Remove Marker
-		    </button>
-		    <br>
-		    <br>
-		
-		    <!--<h4>Filtered Data: </h4>-->
-		    <div id="distanceDiv">
-			<h4 style="display:none" id="distanceHeader">Filtered Results: </h4>
-			<h6 style="display:none" id="distanceCoords"></h6>
-			<div style="overflow:scroll;max-height:100px;" id="filteredData"></div>
-		    </div>
-		    <br>
-		    <!--
-		    <input ng-model="distance" type="number" id="range" name="range" min="10" max="100">
-                    <span> mi </span>
-		    <button ng-click="ApplyRangeFilter()">Apply</button>
-		    -->
-		    <br/>
-		    <br/>
-		    <br/>
-		    <h3> Test Settings </h3>
-		    <p> Radius: <input ng-model="cfg.radius" type="number" id="range" name="range" min="0" max="100"></p>
-                    <p> maxOpacity: <input ng-model="cfg.maxOpacity" type="number" id="CfgOpacity" name="CfgOpacity" min="0" max="100"></p>
-                    <p> scaleRadius: <input ng-model="cfg.scaleRadius" type="checkbox" id="CfgScaleRadius" name="CfgScaleRadius"></p>
-                    <p> useLocalExtrema: <input ng-model="cfg.useLocalExtrema" type="checkbox" id="CfgExtreme" name="CfgExtreme"></p>
-		    <button ng-click="ApplyCfg()">Apply</button>
+<body>
+	<img class="agency-logo" src="./images/agency.png" alt="AGENCY 9-1-1" style="width:132px;height:132px;">
+	<div id="sidebar" class="sidebar collapsed">
+		<!-- Nav tabs -->
+		<div class="sidebar-tabs">
+			<ul role="tablist">
+				<li><a ng-click="AppData.Page = 'homeCtrl'" href="#home" role="tab" title="Info"><i
+							class="fa fa-bars"></i></a></li>
+				<li><a ng-click="AppData.Page = 'homeCtrl'" href="#table" role="tab" title="Info"><i
+							class="fa fa-table"></i></a></li>
+			</ul>
 
+			<ul role="tablist">
+				<li><a ng-click="AppData.Page = 'settingsCtrl'" href="#settings" role="tab" title="Settings"><i
+							class="fa fa-gear"></i></a></li>
+			</ul>
+		</div>
 
-                    <br/>
-                    <br/>
-                    <br/>
-		    <p> Todo: </p>
-		    <p> * List of incidents in a table (with next/prev buttons) </p>
-		    <p> * Filtering based on date </p>
-	            <p> * Make calender not appear behind mapp/sidebar</p> 
-		    <p> * Filtering based on radius</p>
-		    <p> * Get units api based on call number </p>
-		    <p> * Perhaps have the get api display all the fields of the incidents and manually calculate the count part </p>	
-                </div>
-	     </div>
-	</div>	
+		<!-- Tab panes -->
+		<div class="sidebar-content">
+			<div class="sidebar-pane" id="home">
+				<h1 class="sidebar-header">
+					CSE412 - Traffic Accidents
+					<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+				</h1>
+				<br />
+				<h3> Welcome!</h3>
 
-        <div class="sidebar-pane" id="settings">
+				<h4 id="datepicker-header">Date Range</h4>
+				<span>
+					<md-datepicker ng-model="DateFrom" md-placeholder="Enter date"
+						input-aria-describedby="datepicker-description" input-aria-labelledby="datepicker-header ">
+					</md-datepicker>
+					-
+					<md-datepicker ng-model="DateTo" md-placeholder="Enter date"
+						input-aria-describedby="datepicker-description" input-aria-labelledby="datepicker-header ">
+						</md-datepick>
+				</span>
+				<br>
+				<br />
+
+				<h4>Filter Marker: </h4>
+				<span>
+					<button ng-click="PlaceRadiusMarker()">
+						Place Marker
+					</button>
+					<button ng-click="RemoveRadiusMarker()">
+						Remove Marker
+					</button>
+				</span>
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<br />
+				<h3> Test Settings </h3>
+				<p> Radius: <input ng-model="cfg.radius" type="number" id="range" name="range" min="0" max="100"></p>
+				<p> maxOpacity: <input ng-model="cfg.maxOpacity" type="number" id="CfgOpacity" name="CfgOpacity" min="0"
+						max="100"></p>
+				<p> scaleRadius: <input ng-model="cfg.scaleRadius" type="checkbox" id="CfgScaleRadius"
+						name="CfgScaleRadius"></p>
+				<p> useLocalExtrema: <input ng-model="cfg.useLocalExtrema" type="checkbox" id="CfgExtreme"
+						name="CfgExtreme"></p>
+				<button ng-click="ApplyCfg()">Apply</button>
+
+				<p> {{CurrentData.length}} </p>
+
+				<br />
+				<br />
+				<br />
+				<p> Todo: </p>
+				<p> * List of incidents in a table (with next/prev buttons) </p>
+				<p> * Filtering based on date </p>
+				<p> * Make calender not appear behind mapp/sidebar</p>
+				<p> * Filtering based on radius</p>
+				<p> * Get units api based on call number </p>
+				<p> * Perhaps have the get api display all the fields of the incidents and manually calculate the count
+					part </p>
+			</div>
+
+			<div class="sidebar-pane" id="table">
+				<h1 class="sidebar-header">
+					CSE412 - Table
+					<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+				</h1>
+				<br />
+				<div>
+					<div class="buttons-float-right">
+						<button class="btn btn-info" ng-disabled="currentPage == 0"
+							ng-click="currentPage = currentPage - 1">
+							&lt;
+						</button>
+						{{currentPage + 1}}/{{numberOfPages()}}
+						<button class="btn btn-info" ng-disabled="currentPage >= MainDataTable.length / pageSize - 1"
+							ng-click="currentPage = currentPage + 1">
+							&gt;
+						</button>
+					</div>
+
+					<table class="table table-striped table-bordered table-hover">
+						<thead>
+							<tr>
+								<th ng-repeat="hdr in TableHeaders">{{ hdr}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="x in (MainDataTable = CurrentData) | startFrom:currentPage * pageSize | limitTo:pageSize">
+								<td>{{ x.received}}</td>
+								<td>{{ x.callnum}}</td>
+								<td>{{ x.address}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="sidebar-pane" id="settings">
 		<h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
 	</div>
-	
+
 	<div id="map" class="sidebar-map"></div>
 
-        <link rel="stylesheet" href="./css.php">
-        <script src="./js.php"></script>
-        <script src="https://maps.google.com/maps/api/js?key=AIzaSyBjT-szWXwWiR87H_PFHJZ431QEsIkZqCs&libraries=places" type="text/javascript" async></script>
-    </body>
+	<link rel="stylesheet" href="./css.php">
+	<script src="./js.php"></script>
+	<script src="https://maps.google.com/maps/api/js?key=AIzaSyBjT-szWXwWiR87H_PFHJZ431QEsIkZqCs&libraries=places"
+		type="text/javascript" async></script>
+</body>
+
 </html>
