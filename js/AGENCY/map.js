@@ -52,6 +52,7 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 			$scope.CircleFilter.editing.enable();
 			$scope.CircleFilter.addTo($scope.map);
 			$scope.ApplyRangeFilter();
+			$scope.Radius = ($scope.CircleFilter.getRadius()*0.000621371);
 
 			// when the circle filter is present, this ensures the current lat,lng are updated when it moves
 			$scope.map.on('draw:editmove', $scope.UpdateCircle);
@@ -68,6 +69,7 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		if ($scope.CircleFilter !== undefined) {
 			$scope.map.removeLayer($scope.CircleFilter);
 			$scope.CircleFilter = undefined;
+			$scope.Radius = 0;
 			$scope.SetCurrentData($scope.FilteredDate);
 		}
 	}
@@ -90,6 +92,7 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		if ($scope.CircleFilter !== undefined) {
 			var circleCenterCoords = $scope.CircleFilter.getLatLng();
 			var circleRadiusMeters = $scope.CircleFilter.getRadius();
+			$scope.Radius = (circleRadiusMeters*0.000621371);
 
 			var array = $scope.FilteredDate;
 			$scope.SetCurrentData($scope.FilterByDistance(array, circleCenterCoords, circleRadiusMeters));

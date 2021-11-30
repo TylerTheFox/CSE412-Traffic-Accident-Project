@@ -38,8 +38,10 @@
 
 				<h4>By Area:
 					<br />
+
 					<i class="fas fa-map-marked-alt apply" ng-click="PlaceRadiusMarker()"></i>
-					<i class="far fa-times-circle apply" ng-click="RemoveRadiusMarker()"></i>
+					<i class="far fa-times-circle remove" ng-click="RemoveRadiusMarker()"></i>
+					<h5 ng-if="Radius !== 0">Radius = {{ Radius }} (Miles)</h5>
 
 				</h4>
 				<br />
@@ -67,7 +69,7 @@
 
 			<div class="sidebar-pane" id="table">
 				<h1 class="sidebar-header">
-					Accident Information Table
+					Accident Information
 					<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 				</h1>
 				<br />
@@ -137,7 +139,7 @@
 
 
 			<div class="sidebar-pane" id="settings">
-				<h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+				<h1 class="sidebar-header">Map Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 				</h1>
 				<br />
 				<br />
