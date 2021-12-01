@@ -12,9 +12,9 @@
 		<!-- Nav tabs -->
 		<div class="sidebar-tabs">
 			<ul role="tablist">
-				<li><a href="#home" role="tab" title="Info"><i class="fa fa-bars"></i></a></li>
-				<li><a href="#filter" role="tab" title="Filter"><i class="fa fa-filter"></i></a></li>
-				<li><a href="#table" role="tab" title="Table"><i class="fa fa-table"></i></a></li>
+				<li><a href="#home" role="tab" title="Infomation"><i class="fa fa-bars"></i></a></li>
+				<li><a href="#filter" role="tab" title="Filtering"><i class="fa fa-filter"></i></a></li>
+				<li><a href="#table" role="tab" title="Data View"><i class="fa fa-table"></i></a></li>
 			</ul>
 
 			<ul role="tablist">
@@ -26,7 +26,7 @@
 		<div class="sidebar-content">
 			<div class="sidebar-pane" id="home">
 				<h1 class="sidebar-header">
-					CSE412 - Traffic Accidents Project
+					Infomation
 					<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 				</h1>
 				<br />
@@ -42,6 +42,8 @@
 					Communications Agency (<a href="http://www.wccca.com/">WCCCA</a>).
 				</p>
 
+				<p>This was created for Arizona State University CSE412 as a semester project during Fall 2021</p>
+
 				<h3>Features</h3>
 				<ul>
 					<li>Dynamically generated hotspots</li>
@@ -51,51 +53,79 @@
 				</ul>
 
 				<h3>Instructions:</h3>
+				<p>
+					The side bar (The thing you're looking at) has icons on the left side of the panel.
+					Clicking these icons switches between pages, currently theres 4 pages which are
+					Infomation, Filtering, Data View, and Settings. You are currently reading the infomation page.
+				</p>
 				<h4>Filtering <i class="fa fa-filter"></i></h4>
 				<ul>
-					<li><h5>Area</h5></li>
+					<li>
+						<h5>Area</h5>
+					</li>
 					<ul>
-						<li><h6>Purpose</h6></li>
+						<li>
+							<h6>Purpose</h6>
+						</li>
 						<p>
 							This feature will allow the user to place down a movable circle with an adjustable radius.
 							Once placed the circle will restrict the incidents within the bounds of the circle providing
 							a more focused view of the heat map to a certian geographical area.
 							<img src="./images/ex/CircleEx1.png" alt="Circle Example 1">
 						</p>
-						<li><h6>Adding</h6></li>
+						<li>
+							<h6>Adding</h6>
+						</li>
 						<p>
-							The circle can be added to the map by pressing the add circle button (<i class="fas fa-map-marked-alt apply"></i>).
-							Once added the circle can be resized and dragged around the map which will dynamically filter the incidents automatically. 
+							The circle can be added to the map by pressing the add circle button (<i
+								class="fas fa-map-marked-alt apply"></i>).
+							Once added the circle can be resized and dragged around the map which will dynamically
+							filter the incidents automatically.
 
-							You can use both the date filter and area filter simultaneously. 
+							You can use both the date filter and area filter simultaneously.
 						</p>
-						<li><h6>Removing</h6></li>
+						<li>
+							<h6>Removing</h6>
+						</li>
 						<p>
-							The circle can be removed by pressing the remove circle button (<i class="far fa-times-circle remove"></i>) this will reset
+							The circle can be removed by pressing the remove circle button (<i
+								class="far fa-times-circle remove"></i>) this will reset
 							the map to before applying the area filter.
 
 							This does not reset the date filters.
 						</p>
 					</ul>
-					<li><h5>Date</h5></li>
-					<p> Date goes here </p>
+					<li>
+						<h5>Date</h5>
+						<ul>
+							<li><h6>Purpose</h6></li>
+							<p> My purpose </p>
+							<li><h6>Adding</h6></li>
+							<p> Adding it </p>
+							<li><h6>Removing</h6></li>
+							<p> Removing it </p>
+						</ul>
+					</li>
 				</ul>
-				
+
 				<h4>Data View <i class="fa fa-table"></i></h4>
 				<p> Data goes here </p>
 				<h4>Settings <i class="fa fa-cogs"></i></h4>
 				<p> Settings goes here </p>
-				<br/>
+				<br />
 
-				<h3>Technology Used</h3>
+				<h3>Technology</h3>
 				<p> Technology used goes here </p>
+
+				<h3>Credits</h3>
+				<p> Credits used goes here </p>
 
 				<p> This should include screenshots or icons of the things you're talking about. </p>
 			</div>
 
 			<div class="sidebar-pane" id="filter">
 				<h1 class="sidebar-header">
-					Filter Options
+					Filtering
 					<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 				</h1>
 				<br />
@@ -132,7 +162,7 @@
 
 			<div class="sidebar-pane" id="table">
 				<h1 class="sidebar-header">
-					Accident Information
+					Data View
 					<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 				</h1>
 				<br />
@@ -196,7 +226,8 @@
 							</tr>
 
 							<tr ng-if="x.incidentid === CurrentlySelectedCall" ng-repeat-end>
-								<td class="column-fmt" colspan="5" ng-if="!RawUnitData.length">No unit data available for accident.</td>
+								<td class="column-fmt" colspan="5" ng-if="!RawUnitData.length">No unit data available
+									for accident.</td>
 							</tr>
 
 						</tbody>
@@ -206,13 +237,12 @@
 
 
 			<div class="sidebar-pane" id="settings">
-				<h1 class="sidebar-header">Map Settings<span class="sidebar-close"><i
-							class="fa fa-caret-left"></i></span>
+				<h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
 				</h1>
 				<br />
 				<p> Radius: <input ng-model="cfg.radius" type="number" id="range" name="range" min="0" max="100"></p>
-				<p> Max Opacity: <input ng-model="cfg.maxOpacity" type="number" id="CfgOpacity" name="CfgOpacity" min="0"
-						max="100"></p>
+				<p> Max Opacity: <input ng-model="cfg.maxOpacity" type="number" id="CfgOpacity" name="CfgOpacity"
+						min="0" max="100"></p>
 				<p> Scale Radius: <input ng-model="cfg.scaleRadius" type="checkbox" id="CfgScaleRadius"
 						name="CfgScaleRadius"></p>
 				<p> Local Extrema: <input ng-model="cfg.useLocalExtrema" type="checkbox" id="CfgExtreme"
