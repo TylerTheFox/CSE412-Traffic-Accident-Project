@@ -5,11 +5,11 @@
 
 # Synopsis:
 
-The intention of this project was to give a way to visualize traffic accidents within the counties of Washington and Clackamas in Oregon. This map is a heat map of every traffic accident injury or non injury between the years 2014 and 2016. This allows the user to view hot spots with the county, spot trouble intersections or determine of fire stations are placed appropriately around the county with relation to traffic accident incidents. This data was provided by the Washington County Coordinated Communications Agency ([WCCCA](https://wccca.com/)).
+The goal of this project was to provide a way to visualize traffic accidents within the Washington and Clackamas counties in Oregon. This map has a heatmap overlay of every traffic accident incident, injury or non-injury, between the years 2014 and 2016. This allows the user to view hot spots in both counties, identify problematic intersections, and locate fire stations which are placed appropriately around the counties with relation to traffic accident incidents. This data was provided by the Washington County Consolidated Communications Agency ([WCCCA](https://wccca.com/)).
 
-This was created during Fall 2021 as a semester project for Dr. Jia Zou's Database Management (CSE412) class at Arizona State University
+This was created during Fall 2021 as the semester project for Dr. Jia Zou's Database Management (CSE412) course at Arizona State University.
 
-## Contents
+## Contents:
 
 - [Prerequisites](#Prerequisites)
 - [Features](#Features)
@@ -23,33 +23,34 @@ PostgreSQL >= 12.9
 
 PHP >= 8.0
 
-## Features 
+## Features: 
 
-* Dynamically generated hotspots
-* Filtering by area, date or both
-* Data table of calls on map with units assigned
-* Adjustable heatmap extrema / radius
+* Dynamically generated heatmap
+* Heatmap filtering by area, date, or both
+* Data table of mapped incidents with units assigned
+* Adjustable heatmap extrema and radius
 
-## Installation 
+## Installation: 
 1. Create a Postgres database 
 2. Import the provided database in Database/psql_database.backup
 This can be done with this by running pg_restore in the root direcotry of the project ex. `pg_restore --dbname=dbname --verbose backup/psql_database.backup`
 3.  Copy config.php.example to config.php, open it, and edit the database connection configuration. 
 
-## Misc Images
+## Misc. Images:
 
 ### Filter Page
 ![Settings](https://github.com/TylerTheFox/CSE412-Traffic-Accident-Project/raw/develop/images/ex/github/filter.png)
-
 ![Settings](https://github.com/TylerTheFox/CSE412-Traffic-Accident-Project/raw/develop/images/ex/CircleEx1.png)
+
 
 ### Data View Page
 ![Data View](https://github.com/TylerTheFox/CSE412-Traffic-Accident-Project/raw/develop/images/ex/github/DataView.png)
 
+
 ### Settings Page 
 ![Data View](https://github.com/TylerTheFox/CSE412-Traffic-Accident-Project/raw/develop/images/ex/github/Settings.png)
 
-## Credits
+## Credits:
 * Brandan Tyler Lasley -[GitHub](https://github.com/TylerTheFox/)
 * Daniel Salas -  [GitHub](https://github.com/Daniel-Salas481)
 * Andrew Thomas - [GitHub](https://github.com/andrewgucci)
