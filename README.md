@@ -33,7 +33,7 @@ PHP >= 8.0
 ## Installation 
 1. Create a Postgres database 
 2. Import the provided database in Database/psql_database.backup
-This can be done with this by running pg_restore in the root direcotry of the projectex. `pg_restore --dbname=dbname --verbose backup/psql_database.backup`
+This can be done with this by running pg_restore in the root direcotry of the project ex. `pg_restore --dbname=dbname --verbose backup/psql_database.backup`
 3.  Copy config.php.example to config.php, open it, and edit the database connection configuration. 
 
 ## Misc Images
