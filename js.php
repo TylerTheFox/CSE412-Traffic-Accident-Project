@@ -11,7 +11,6 @@ $files = array
     './js/leaflet.js',
     './js/sidebar/leaflet-sidebar.js',
     './js/leaflet.draw.js',
-    './js/L.Popup.Angular.js',
     './js/leaflet-heatmap.js',
     './js/AGENCY/app.js',
     './js/AGENCY/map.js'
