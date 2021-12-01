@@ -129,3 +129,10 @@ tr.body {
     color: rgb(255, 255, 255);
     font-size: 90% !important;
 }
+
+img.contain
+{
+    max-height:300px;
+    max-width:300px;
+    object-fit:contain !important;
+}
