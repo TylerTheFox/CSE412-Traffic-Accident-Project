@@ -33,16 +33,20 @@
 
 				<h3>Synopsis</h3>
 				<p>
-					The intention of this project was to provide a way to visualize traffic accidents
-					within the countires of Washington and Clackamas in Oregon. This map is a heat map
-					of every traffic accicent injury or non injury between the years 2014 and 2016. This
+					The intention of this project was to give a way to visualize traffic accidents
+					within the counties of Washington and Clackamas in Oregon. This map is a heat map
+					of every traffic accident injury or non injury between the years 2014 and 2016. This
 					allows the user to view hot spots with the county, spot trouble intersections or
 					determine of fire stations are placed appropriately around the county with relation to
 					traffic accident incidents. This data was provided by the Washington County Coordinated
 					Communications Agency (<a href="http://www.wccca.com/">WCCCA</a>).
 				</p>
 
-				<p>This was created for Arizona State University CSE412 as a semester project during Fall 2021</p>
+				<p>
+					This was created during Fall 2021 as a semester project for
+					Dr. Jia Zou's Database Management (CSE412) class at Arizona
+					State University
+				</p>
 
 				<h3>Features</h3>
 				<ul>
@@ -52,11 +56,11 @@
 					<li>Adjustable heatmap extrema / radius</li>
 				</ul>
 
-				<h3>Instructions:</h3>
+				<h3>User Manual:</h3>
 				<p>
-					The side bar (The thing you're looking at) has icons on the left side of the panel at the top and bottom.
+					The side bar has icons on the left side of the panel at the top and bottom.
 					Clicking these icons switches between pages, currently theres 4 pages which are
-					Infomation, Filtering, Data View, and Settings. You are currently reading the infomation page.
+					Infomation, Filtering, Data View, and Settings.
 				</p>
 				<h4>Filtering <i class="fa fa-filter"></i></h4>
 				<ul>
@@ -70,7 +74,7 @@
 						<p>
 							This feature will allow the user to place down a movable circle with an adjustable radius.
 							Once placed the circle will restrict the incidents within the bounds of the circle providing
-							a more focused view of the heat map to a certian geographical area.
+							a more focused view of the heat map to a certain geographical area.
 							<img src="./images/ex/CircleEx1.png" alt="Circle Example 1">
 						</p>
 						<li>
@@ -82,7 +86,7 @@
 							Once added the circle can be resized and dragged around the map which will dynamically
 							filter the incidents automatically.
 
-							You can use both the date filter and area filter simultaneously.
+							Both the date filter and area filter simultaneously.
 						</p>
 						<li>
 							<h6>Removing</h6>
@@ -98,31 +102,117 @@
 					<li>
 						<h5>Date</h5>
 						<ul>
-							<li><h6>Purpose</h6></li>
-							<p> My purpose </p>
-							<li><h6>Adding</h6></li>
-							<p> Adding it </p>
-							<li><h6>Removing</h6></li>
-							<p> Removing it </p>
+							<li>
+								<h6>Purpose</h6>
+							</li>
+							<p>
+								Filtering by date allows the user to restrict the incidents on the map between a lower
+								and upper bound.
+							</p>
+							<li>
+								<h6>Adding</h6>
+							</li>
+							<p>
+								The date filter has 2 text boxes which on the left is the lower bound, and the right is
+								the upper bound.
+								The lower bound specifies the minimum date an incident can be and the upper bound is the
+								maximum date an incident can be.
+								Entering a valid date into either of these text boxes will restrict the incidents shown
+								on map between the upper and lower bounds.
+
+								The minimum valid date is 11/8/2013 and the maximum is 10/21/2016.
+
+								Additionally, the arrow pointing down on the text boxes can be clicked to enable
+								calendar mode.
+							</p>
+							<img src="./images/ex/DateEx.png" alt="Date Example 1">
+							<p>
+								Once the upper and lower bounds are set to satisfaction it can be applied by clicking
+								the apply date filter
+								button (<i class="far far fa-calendar-check apply"></i>). Both the date filter and area
+								filter simultaneously.
+								<img src="./images/ex/DataViewEx.png" alt="Date Example 1">
+							</p>
+							<li>
+								<h6>Removing</h6>
+							</li>
+							<p>
+								The date filter can be removed by pressing the remove date filter button (<i
+									class="far fa-calendar-times remove"></i>).
+
+								This will reset the map to before the date filter was applied.
+								This will not reset the area filter.
+							</p>
 						</ul>
 					</li>
 				</ul>
 
 				<h4>Data View <i class="fa fa-table"></i></h4>
-				<p> Data goes here </p>
+				<p>
+					The data view page displays a table of all incidents currently visibile on the map.
+					The arrow on the first column facing right can be clicked and the call can be expanded
+					to display the units which were assigned to that incident and their statuses. Dates before
+					2014-02-14 do not have units.
+				</p>
 				<h4>Settings <i class="fa fa-cogs"></i></h4>
-				<p> Settings goes here </p>
+				<p> The settings page allows the user to change certian metrics of the heat map such as radius, opacity, and scaling.</p>
+				<ul>
+					<li><h6>Radius</h6></li>
+					<p>Sets the search distance for incidents on the map to be grouped in the heat map. If scale radius is enabled this should be small ex less than 1 ex 0.5, 0.05, 0.005, etc.</p>
+					<li><h6>Opacity</h6></li>
+					<p>The level of transparacy of the heat map in relation to the map</p>
+					<li><h6>Scale Radius</h6></li>
+					<p>Scales the radius based on map zoom</p>
+					<li><h6>Local Extrema</h6></li>
+					<p>Uses the data maximum within the current map boundaries</p>
+				</ul>
+				<p> Once the settings are configuration to satisfaction it can be applied but clicking the apply button. </p>
 				<br />
 
 				<h3>Technology</h3>
-				<p> Technology used goes here </p>
+				<ul>
+					<li>Ubuntu 20.04.3 LTS</li>
+					<li>Apache 2.4.41</li>
+					<li>PostgreSQL 12.9</li>
+					<li>PHP 8.0.13</li>
+					<li>HTML5</li>
+					<li>CSS3</li>
+					<ul>
+						<li>Awesome Fonts</li>
+					</ul>
+					<li>Javascript</li>
+					<ul>
+						<li>Leaflet 1.2.0</li>
+						<ul>
+							<li>Side Bar</li>
+							<li>Draw 1.0.4</li>
+							<li>Heat Map</li>
+						</ul>
+						<li>Angular</li>
+						<ul>
+							<li>Animate 1.7.6</li>
+							<li>Aria 1.7.6</li>
+							<li>Material 1.1.12</li>
+							<li>Messages 1.7.6</li>
+						</ul>
+					</ul>
+				</ul>
 
 				<h3>Credits</h3>
 				<ul>
-					<li><h5>Brandan Tyler Lasley - <a href="https://github.com/TylerTheFox">Github</a></h5></li>
-					<li><h5>Daniel Salas - <a href="https://github.com/andrewgucci">Github</a></h5></li>
-					<li><h5>Andrew Thomas - <a href="https://github.com/Daniel-Salas481">Github</a></h5></li>
+					<li>
+						<h5>Brandan Tyler Lasley - <a href="https://github.com/TylerTheFox">Github</a></h5>
+					</li>
+					<li>
+						<h5>Daniel Salas - <a href="https://github.com/Daniel-Salas481">Github</a></h5>
+					</li>
+					<li>
+						<h5>Andrew Thomas - <a href="https://github.com/andrewgucci">Github</a></h5>
+					</li>
 				</ul>
+
+				<p> The Github Repository is avaialble <a
+						href="https://github.com/TylerTheFox/CSE412-Traffic-Accident-Project">here</a>!</p>
 			</div>
 
 			<div class="sidebar-pane" id="filter">
