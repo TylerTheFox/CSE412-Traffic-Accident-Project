@@ -37,7 +37,7 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		};
 	};
 
-	$scope.convertUnits = function(radiusMeters) {
+	$scope.convertMetersToMiles = function(radiusMeters) {
 		return (radiusMeters*0.000621371).toFixed(1);
 	}
 
@@ -95,7 +95,7 @@ app.controller('mainCtrl', function ($scope, $http, table) {
 		if ($scope.CircleFilter !== undefined) {
 			var circleCenterCoords = $scope.CircleFilter.getLatLng();
 			var circleRadiusMeters = $scope.CircleFilter.getRadius();
-			$scope.Radius = $scope.convertUnits(circleRadiusMeters);
+			$scope.Radius = $scope.convertMetersToMiles(circleRadiusMeters);
 
 			var array = $scope.FilteredDate;
 			$scope.SetCurrentData($scope.FilterByDistance(array, circleCenterCoords, circleRadiusMeters));
