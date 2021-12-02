@@ -140,6 +140,6 @@ tr.body {
 img.contain
 {
     max-height:300px;
-    max-width:300px;
+    max-width:358px;
     object-fit:contain !important;
 }
