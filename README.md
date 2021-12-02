@@ -56,4 +56,3 @@ This can be done with this by running pg_restore in the root direcotry of the pr
 * Brandan Tyler Lasley - [GitHub](https://github.com/TylerTheFox/)
 * Daniel Salas -  [GitHub](https://github.com/Daniel-Salas481)
 * Andrew Thomas - [GitHub](https://github.com/andrewgucci)
-* Joshua Wingo
