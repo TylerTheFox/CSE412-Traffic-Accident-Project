@@ -9,6 +9,8 @@ The goal of this project was to provide a way to visualize traffic accidents wit
 
 This was created during Fall 2021 as the semester project for Dr. Jia Zou's Database Management (CSE412) course at Arizona State University.
 
+[Demo Site](https://network.brandanlasley.com/)
+
 ## Contents:
 
 - [Prerequisites](#Prerequisites)
