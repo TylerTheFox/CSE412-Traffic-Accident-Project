@@ -51,6 +51,6 @@ This can be done with this by running pg_restore in the root direcotry of the pr
 ![Data View](https://github.com/TylerTheFox/CSE412-Traffic-Accident-Project/raw/develop/images/ex/github/Settings.png)
 
 ## Credits:
-* Brandan Tyler Lasley -[GitHub](https://github.com/TylerTheFox/)
+* Brandan Tyler Lasley - [GitHub](https://github.com/TylerTheFox/)
 * Daniel Salas -  [GitHub](https://github.com/Daniel-Salas481)
 * Andrew Thomas - [GitHub](https://github.com/andrewgucci)
