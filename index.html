@@ -84,18 +84,18 @@
 							<h6>Adding</h6>
 						</li>
 						<p>
-							The circle can be added to the map by pressing the add circle button (<i
+							The circle filter can be added to the map by pressing the add circle button (<i
 								class="fas fa-map-marked-alt apply"></i>).
-							Once added the circle can be resized and dragged around the map which will dynamically
+							Once added, the circle filter can be resized and dragged around the map which will dynamically
 							filter the incidents automatically.
 
-							Both the date filter and area filter simultaneously.
+							Both the area filter and date filter can be applied simultaneously.
 						</p>
 						<li>
 							<h6>Removing</h6>
 						</li>
 						<p>
-							The circle can be removed by pressing the remove circle button (<i
+							The circle filter can be removed by pressing the remove circle button (<i
 								class="far fa-times-circle remove"></i>) this will reset
 							the map to before applying the area filter.
 							<br />
@@ -116,24 +116,24 @@
 								<h6>Adding</h6>
 							</li>
 							<p>
-								The date filter has 2 text boxes which on the left is the lower bound, and the right is
+								The date filter has 2 text boxes: the left is the lower bound and the right is
 								the upper bound.
-								The lower bound specifies the minimum date an incident can be and the upper bound is the
-								maximum date an incident can be.
+								The lower bound specifies the minimum date that an incident could occur and the upper 
+								bound is the maximum date an incident could occur.
 								Entering a valid date into either of these text boxes will restrict the incidents shown
-								on map between the upper and lower bounds.
+								on map between the entered bounds.
 
 								The minimum valid date is 11/8/2013 and the maximum is 10/21/2016.
 
 								Additionally, the arrow pointing down on the text boxes can be clicked to enable
-								calendar mode.
+								calendar mode for easier date selection.
 							</p>
 							<img class="contain" src="./images/ex/DateEx.png" alt="Date Example 1">
 							<p>
-								Once the upper and lower bounds are set to satisfaction it can be applied by clicking
-								the apply date filter
+								Once the upper and lower bounds are set to satisfaction, the filter can be applied by 
+								clicking the apply date filter
 								button (<i class="far far fa-calendar-check apply"></i>). Both the date filter and area
-								filter simultaneously.
+								filter can be applied simultaneously.
 							</p>
 							<li>
 								<h6>Removing</h6>
@@ -143,7 +143,8 @@
 									class="far fa-calendar-times remove"></i>).
 
 								This will reset the map to before the date filter was applied.
-								This will not reset the area filter.
+								<br />
+								<b>Note:</b> removal does not reset the area filter.
 							</p>
 						</ul>
 					</li>
@@ -155,12 +156,12 @@
 				<p>
 					The data view page displays a table of all incidents currently visibile on the map.
 					The arrow on the first column facing right can be clicked and the call can be expanded
-					to display the units which were assigned to that incident and their statuses. 
+					to display the units that were assigned to that incident as well as their statuses. 
 					
 					<img class="contain" src="./images/ex/DataViewEx.png" alt="Date Example 1">
 
-					The incidents are limited by pages press the right arrow button to change to the next page 
-					and left moves backwards.
+					The incidents are limited by pages. Press the right arrow button to change to the next page 
+					and press the left arrow button to return to the previous page.
 
 					<img class="contain" src="./images/ex/DataViewEx2.png" alt="Date Example 1">
 					
@@ -223,6 +224,9 @@
 					</li>
 					<li>
 						<h5>Andrew Thomas - <a href="https://github.com/andrewgucci">Github</a></h5>
+					</li>
+					<li>
+						<h5>Joshua Wingo</h5>
 					</li>
 				</ul>
 
