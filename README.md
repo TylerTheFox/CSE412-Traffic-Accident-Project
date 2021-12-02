@@ -5,7 +5,7 @@
 
 # Synopsis:
 
-The goal of this project was to provide a way to visualize traffic accidents within the Washington and Clackamas counties in Oregon. This map has a heatmap overlay of every traffic accident, injury or non-injury incident, between the years 2014 and 2016. This allows the user to view hotspots in both counties which can identify problem intersections or determine if fire stations are placed appropriately around the county with relation to traffic accident incidents. This data was provided by the Washington County Consolidated Communications Agency ([WCCCA](https://wccca.com/)).
+The goal of this project was to provide a way to visualize traffic accidents within the Washington and Clackamas counties in Oregon. This map has a heatmap overlay of every traffic accident, injury or non-injury incident, between the years 2014 and 2016. This allows the user to view hotspots in both counties which can help identify problematic intersections or determine if fire stations are located appropriately around the county with relation to traffic accident incidents. This data was provided by the Washington County Consolidated Communications Agency ([WCCCA](https://wccca.com/)).
 
 This was created during Fall 2021 as the semester project for Dr. Jia Zou's Database Management (CSE412) course at Arizona State University.
 
@@ -54,3 +54,4 @@ This can be done with this by running pg_restore in the root direcotry of the pr
 * Brandan Tyler Lasley - [GitHub](https://github.com/TylerTheFox/)
 * Daniel Salas -  [GitHub](https://github.com/Daniel-Salas481)
 * Andrew Thomas - [GitHub](https://github.com/andrewgucci)
+* Joshua Wingo
