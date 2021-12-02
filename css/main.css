@@ -19,6 +19,7 @@ html, body, #map {
   padding: 10px 10px !important;
   border-right-width: 18px !important;
   border-right-style: solid !important;
+  border-color: white !important;
 }
 
 ::-webkit-scrollbar-track
