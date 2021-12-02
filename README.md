@@ -5,7 +5,7 @@
 
 # Synopsis:
 
-The goal of this project was to provide a way to visualize traffic accidents within the Washington and Clackamas counties in Oregon. This map has a heatmap overlay of every traffic accident incident, injury or non-injury, between the years 2014 and 2016. This allows the user to view hot spots in both counties, identify problematic intersections, and locate fire stations which are placed appropriately around the counties with relation to traffic accident incidents. This data was provided by the Washington County Consolidated Communications Agency ([WCCCA](https://wccca.com/)).
+The goal of this project was to provide a way to visualize traffic accidents within the Washington and Clackamas counties in Oregon. This map has a heatmap overlay of every traffic accident, injury or non-injury incident, between the years 2014 and 2016. This allows the user to view hotspots in both counties which can identify problem intersections or determine if fire stations are placed appropriately around the county with relation to traffic accident incidents. This data was provided by the Washington County Consolidated Communications Agency ([WCCCA](https://wccca.com/)).
 
 This was created during Fall 2021 as the semester project for Dr. Jia Zou's Database Management (CSE412) course at Arizona State University.
 
